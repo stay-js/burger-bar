@@ -134,3 +134,10 @@ $RECYCLE.BIN/
 .DS_Store
 
 _NCrunch*
+
+# local env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local

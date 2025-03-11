@@ -6,5 +6,5 @@
         xmlns:local="clr-namespace:Desktop"
         mc:Ignorable="d"
         Title="Desktop App" Height="450" Width="800">
-    <TextBox Text="Hello World"/>
+    <TextBlock Text="Hello World"/>
 </Window>
