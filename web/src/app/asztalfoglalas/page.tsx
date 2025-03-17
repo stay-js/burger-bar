@@ -1,4 +1,5 @@
 import { type NextPage } from "next";
+import { TableReservationForm } from "~/components/table-reservation-form";
 import { Title } from "~/components/title";
 import { createMetadata } from "~/lib/create-metadata";
 
@@ -11,6 +12,8 @@ export const metadata = createMetadata({
 const Page: NextPage = () => (
   <main className="flex flex-col items-center gap-12">
     <Title>Asztalfoglalás</Title>
+
+    <TableReservationForm />
   </main>
 );
 

@@ -18,7 +18,7 @@ const Page: NextPage = async () => {
     <main className="flex flex-col items-center gap-12">
       <Title>Menü</Title>
 
-      <div className="grid w-4/5 grid-cols-1 gap-4 text-black md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 text-black sm:w-4/5 md:grid-cols-2 lg:grid-cols-3">
         {data.map((item) => (
           <div
             key={item.id}
