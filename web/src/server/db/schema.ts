@@ -8,7 +8,7 @@ import {
 
 export const createTable = mysqlTableCreator((name) => name);
 
-export const posts = createTable("table-reservation", {
+export const tableReservations = createTable("table-reservation", {
   id: int("id").primaryKey().autoincrement(),
   name: varchar("name", { length: 256 }),
   email: varchar("email", { length: 256 }),
@@ -16,4 +16,12 @@ export const posts = createTable("table-reservation", {
   date: date("date"),
   time: timestamp("time"),
   people: int("people"),
+});
+
+export const menu = createTable("menu", {
+  id: int("id").primaryKey().autoincrement(),
+  name: varchar("name", { length: 256 }),
+  price: int("price"),
+  description: varchar("description", { length: 512 }),
+  image: varchar("image", { length: 256 }),
 });

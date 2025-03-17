@@ -13,3 +13,11 @@ CREATE TABLE `table-reservation` (
   `time` time NOT NULL,
   `people` int NOT NULL
 );
+
+CREATE TABLE `menu` (
+  `id` int AUTO_INCREMENT PRIMARY KEY NOT NULL,
+  `name` varchar(256) NOT NULL,
+  `price` int NOT NULL,
+  `description` varchar(512) NOT NULL,
+  `image` varchar(256) NOT NULL
+);
