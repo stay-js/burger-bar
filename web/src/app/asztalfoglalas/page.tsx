@@ -1,4 +1,5 @@
 import { type NextPage } from "next";
+import { Title } from "~/components/title";
 import { createMetadata } from "~/utils/create-metadata";
 
 export const metadata = createMetadata({
@@ -8,8 +9,8 @@ export const metadata = createMetadata({
 });
 
 const Page: NextPage = () => (
-  <main>
-    <h1 className="text-center">Asztalfoglalás</h1>
+  <main className="flex flex-col items-center gap-12">
+    <Title>Asztalfoglalás</Title>
   </main>
 );
 

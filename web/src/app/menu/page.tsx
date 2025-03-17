@@ -1,5 +1,6 @@
 import { type NextPage } from "next";
 import Image from "next/image";
+import { Title } from "~/components/title";
 import { db } from "~/server/db";
 import { menu } from "~/server/db/schema";
 import { createMetadata } from "~/utils/create-metadata";
@@ -15,9 +16,7 @@ const Page: NextPage = async () => {
 
   return (
     <main className="flex flex-col items-center gap-12">
-      <h1 className="text-4xl font-bold">
-        Burger <span className="text-orange-400">Bár</span> - Menü
-      </h1>
+      <Title>Menü</Title>
 
       <div className="grid w-4/5 grid-cols-1 gap-4 text-black md:grid-cols-2 lg:grid-cols-3">
         {data.map((item) => (
