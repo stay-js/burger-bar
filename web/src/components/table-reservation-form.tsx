@@ -8,6 +8,7 @@ import { Label } from "./ui/label";
 import { Textarea } from "./ui/textarea";
 import saveTableReservation from "~/app/actions";
 import { formSchema, type FormSchema } from "~/lib/form-schema";
+import { toast } from "sonner";
 
 export const TableReservationForm: React.FC = () => {
   const {
@@ -19,10 +20,12 @@ export const TableReservationForm: React.FC = () => {
   } = useForm<FormSchema>({ resolver: zodResolver(formSchema) });
 
   const onSubmit: SubmitHandler<FormSchema> = async (data) => {
-    const { success } = await saveTableReservation(data);
-    if (success) alert("Sikeres foglalás!");
-    else alert("Hiba történt a foglalás során!");
     reset();
+
+    const { success } = await saveTableReservation(data);
+
+    if (success) toast("Sikeres foglalás!");
+    else toast("Hiba történt a foglalás során!");
   };
 
   return (
