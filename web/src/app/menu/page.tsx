@@ -7,15 +7,14 @@ import { createMetadata } from "~/utils/create-metadata";
 export const metadata = createMetadata({
   path: "/menu",
   title: "Menü",
-  description:
-    "Burger Bár - Menü (A legfinomabb hamburgerek, amiket valaha kóstoltál.)",
+  description: "Menü (A legfinomabb hamburgerek, amiket valaha kóstoltál.)",
 });
 
 const Page: NextPage = async () => {
   const data = await db.select().from(menu).execute();
 
   return (
-    <main className="my-20 flex flex-col items-center gap-12">
+    <main className="flex flex-col items-center gap-12">
       <h1 className="text-4xl font-bold">
         Burger <span className="text-orange-400">Bár</span> - Menü
       </h1>
