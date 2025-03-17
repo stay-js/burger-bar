@@ -41,5 +41,3 @@ INSERT INTO `menu` (`name`, `price`, `description`, `image`) VALUES
 ('Honey Mustard Chicken Burger', 4490, 'Grillezett csirkemell, mézes-mustáros szósz, ropogós bacon, paradicsom, jégsaláta, cheddar sajt, teljes kiőrlésű buci.', '/images/honey_mustard_chicken_burger.png'),
 ('Green Garden Burger (Vega)', 3990, 'Grillezett halloumi sajt, avokádókrém, pirított gomba, friss rukkola, fokhagymás joghurtos szósz, teljes kiőrlésű buci.', '/images/green_garden_burger.png'),
 ('Vegan Power Burger (Vegán)', 4190, 'Bab- és quinoa pogácsa, vegán cheddar, grillezett paprika, rukkolás pesto, vegán majonéz, teljes kiőrlésű buci.', '/images/vegan_power_burger.png');
-
-SELECT * from `table-reservation`

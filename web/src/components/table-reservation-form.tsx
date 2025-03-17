@@ -140,7 +140,7 @@ export const TableReservationForm: React.FC = () => {
 
       <div>
         <Label htmlFor="message">Üzenet:</Label>
-        <Textarea id="message" rows={8} />
+        <Textarea id="message" rows={8} {...register("message")} />
       </div>
 
       <Button type="submit" variant="secondary">

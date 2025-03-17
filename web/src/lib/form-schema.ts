@@ -16,7 +16,7 @@ export const formSchema = z.object({
       message: "Hibás dátum!",
     })
     .refine((date) => new Date(date) >= new Date(), {
-      message: "A dátumn nem lehet múltbeli!",
+      message: "A dátum nem lehet múltbeli!",
     }),
   time: z
     .string()
