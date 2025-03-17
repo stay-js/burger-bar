@@ -1,58 +1,13 @@
 "use client";
 
-import { z } from "zod";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Textarea } from "./ui/textarea";
-
-export const formSchema = z.object({
-  name: z.string().min(1, { message: "Adja meg a nevét!" }),
-  email: z.string().email({ message: "Hibás e-mail cím!" }),
-  phone: z
-    .string()
-    .min(1, { message: "Adja meg a telefonszámát!" })
-    .regex(/^[+]?[\s./0-9]*[(]?[0-9]{1,4}[)]?[-\s./0-9]{8,14}$/g, {
-      message: "Hibás telefonszám!",
-    }),
-  date: z
-    .string()
-    .min(1, { message: "Adja meg a dátumot!" })
-    .refine((date) => !isNaN(Date.parse(date)), {
-      message: "Hibás dátum!",
-    })
-    .refine((date) => new Date(date) >= new Date(), {
-      message: "A dátumn nem lehet múltbeli!",
-    }),
-  time: z
-    .string()
-    .min(1, { message: "Adja meg az időpontot!" })
-    .refine(
-      (time) => {
-        const [hours, minutes] = time.split(":").map((part) => Number(part));
-        if (hours === undefined || minutes == undefined) return false;
-
-        return hours >= 0 && hours <= 23 && minutes >= 0 && minutes <= 59;
-      },
-      {
-        message: "Hibás időpont!",
-      },
-    ),
-  people: z
-    .string()
-    .min(1, { message: "Adja meg, hogy hány főre foglalna!" })
-    .refine((people) => !isNaN(Number(people)), {
-      message: "Csak számot adhat meg!",
-    })
-    .refine((people) => Number(people) > 0, {
-      message: "Minimum 1 főre kell foglalnia!",
-    }),
-  message: z.string().optional(),
-});
-
-type FormSchema = z.infer<typeof formSchema>;
+import saveTableReservation from "~/app/actions";
+import { formSchema, type FormSchema } from "~/lib/form-schema";
 
 export const TableReservationForm: React.FC = () => {
   const {
@@ -63,8 +18,10 @@ export const TableReservationForm: React.FC = () => {
     // eslint-disable-next-line
   } = useForm<FormSchema>({ resolver: zodResolver(formSchema) });
 
-  const onSubmit: SubmitHandler<FormSchema> = (data) => {
-    alert(data);
+  const onSubmit: SubmitHandler<FormSchema> = async (data) => {
+    const { success } = await saveTableReservation(data);
+    if (success) alert("Sikeres foglalás!");
+    else alert("Hiba történt a foglalás során!");
     reset();
   };
 

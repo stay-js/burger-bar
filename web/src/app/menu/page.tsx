@@ -24,12 +24,7 @@ const Page: NextPage = async () => {
             key={item.id}
             className="overflow-hidden rounded-lg bg-orange-50"
           >
-            <Image
-              src={item.image ?? ""}
-              alt={item.name ?? ""}
-              width={600}
-              height={400}
-            />
+            <Image src={item.image} alt={item.name} width={600} height={400} />
 
             <div className="flex flex-col gap-2 p-4">
               <h2 className="text-xl font-bold">{item.name}</h2>
