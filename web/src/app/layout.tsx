@@ -2,6 +2,7 @@ import "~/styles/globals.css";
 
 import { GeistSans } from "geist/font/sans";
 import { Navigation } from "~/components/navigation";
+import { Footer } from "~/components/footer";
 
 const RootLayout: React.FC<{ readonly children: React.ReactNode }> = ({
   children,
@@ -11,6 +12,8 @@ const RootLayout: React.FC<{ readonly children: React.ReactNode }> = ({
       <Navigation />
 
       {children}
+
+      <Footer />
     </body>
   </html>
 );
