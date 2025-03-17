@@ -11,14 +11,43 @@ import { Textarea } from "./ui/textarea";
 export const formSchema = z.object({
   name: z.string().min(1, { message: "Adja meg a nevét!" }),
   email: z.string().email({ message: "Hibás e-mail cím!" }),
-  phone: z.string().min(1, { message: "Adja meg a telefonszámát!" }),
-  date: z.string().min(1, { message: "Adja meg a dátumot!" }),
-  time: z.string().min(1, { message: "Adja meg az időpontot!" }),
+  phone: z
+    .string()
+    .min(1, { message: "Adja meg a telefonszámát!" })
+    .regex(/^[+]?[\s./0-9]*[(]?[0-9]{1,4}[)]?[-\s./0-9]{8,14}$/g, {
+      message: "Hibás telefonszám!",
+    }),
+  date: z
+    .string()
+    .min(1, { message: "Adja meg a dátumot!" })
+    .refine((date) => !isNaN(Date.parse(date)), {
+      message: "Hibás dátum!",
+    })
+    .refine((date) => new Date(date) >= new Date(), {
+      message: "A dátumn nem lehet múltbeli!",
+    }),
+  time: z
+    .string()
+    .min(1, { message: "Adja meg az időpontot!" })
+    .refine(
+      (time) => {
+        const [hours, minutes] = time.split(":").map((part) => Number(part));
+        if (hours === undefined || minutes == undefined) return false;
+
+        return hours >= 0 && hours <= 23 && minutes >= 0 && minutes <= 59;
+      },
+      {
+        message: "Hibás időpont!",
+      },
+    ),
   people: z
     .string()
     .min(1, { message: "Adja meg, hogy hány főre foglalna!" })
-    .refine((people) => !isNaN(parseInt(people)), {
+    .refine((people) => !isNaN(Number(people)), {
       message: "Csak számot adhat meg!",
+    })
+    .refine((people) => Number(people) > 0, {
+      message: "Minimum 1 főre kell foglalnia!",
     }),
   message: z.string().optional(),
 });
@@ -48,7 +77,12 @@ export const TableReservationForm: React.FC = () => {
         <Label htmlFor="name">
           Név: <span className="text-red-500">*</span>
         </Label>
-        <Input id="name" type="text" {...register("name")} />
+        <Input
+          id="name"
+          type="text"
+          {...register("name")}
+          placeholder="Minta János"
+        />
 
         {errors.name && (
           <span className="text-xs text-red-500">{errors.name.message}</span>
@@ -59,7 +93,12 @@ export const TableReservationForm: React.FC = () => {
         <Label htmlFor="email">
           E-mail: <span className="text-red-500">*</span>
         </Label>
-        <Input id="email" type="text" {...register("email")} />
+        <Input
+          id="email"
+          type="text"
+          {...register("email")}
+          placeholder="example@example.hu"
+        />
 
         {errors.email && (
           <span className="text-xs text-red-500">{errors.email.message}</span>
@@ -70,7 +109,12 @@ export const TableReservationForm: React.FC = () => {
         <Label htmlFor="phone">
           Telefonszám: <span className="text-red-500">*</span>
         </Label>
-        <Input id="phone" type="text" {...register("phone")} />
+        <Input
+          id="phone"
+          type="text"
+          {...register("phone")}
+          placeholder="+36 30 111 1111"
+        />
 
         {errors.phone && (
           <span className="text-xs text-red-500">{errors.phone.message}</span>
@@ -79,9 +123,14 @@ export const TableReservationForm: React.FC = () => {
 
       <div>
         <Label htmlFor="date">
-          Dátum (hónap, nap): <span className="text-red-500">*</span>
+          Dátum (év, hónap, nap): <span className="text-red-500">*</span>
         </Label>
-        <Input id="date" type="text" {...register("date")} />
+        <Input
+          id="date"
+          type="text"
+          {...register("date")}
+          placeholder="2025-01-01"
+        />
 
         {errors.date && (
           <span className="text-xs text-red-500">{errors.date.message}</span>
@@ -92,7 +141,12 @@ export const TableReservationForm: React.FC = () => {
         <Label htmlFor="time">
           Időpont (óra, perc): <span className="text-red-500">*</span>
         </Label>
-        <Input id="time" type="text" {...register("time")} />
+        <Input
+          id="time"
+          type="text"
+          {...register("time")}
+          placeholder="19:00"
+        />
 
         {errors.time && (
           <span className="text-xs text-red-500">{errors.time.message}</span>
@@ -103,7 +157,12 @@ export const TableReservationForm: React.FC = () => {
         <Label htmlFor="people">
           Hány főre? <span className="text-red-500">*</span>
         </Label>
-        <Input id="people" type="text" {...register("people")} />
+        <Input
+          id="people"
+          type="text"
+          {...register("people")}
+          placeholder="4"
+        />
 
         {errors.people && (
           <span className="text-xs text-red-500">{errors.people.message}</span>
