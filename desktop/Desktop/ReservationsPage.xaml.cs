@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
+
 
 namespace Desktop
 {
@@ -11,5 +13,8 @@ namespace Desktop
             InitializeComponent();
             _mainWindow = mainWindow;
         }
+
+        private void BackToMainMenu_Click(object sender, RoutedEventArgs e) =>
+            _mainWindow.GoBackToMainMenu();
     }
 }

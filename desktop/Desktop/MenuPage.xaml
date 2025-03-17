@@ -6,7 +6,31 @@
              xmlns:local="clr-namespace:Desktop"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock Text="Menü" FontSize="36" Margin="40" HorizontalAlignment="Center"/>
-    </Grid>
+    <DockPanel>
+        <Grid DockPanel.Dock="Top" Background="LightGray">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                Margin="10"
+                Padding="10"
+                Width="100"
+                Content="Vissza"
+                Click="BackToMainMenu_Click"/>
+
+            <TextBlock
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                FontSize="24"
+                Text="Burger Bár Admin - Menü"/>
+        </Grid>
+
+        <Grid Background="White"></Grid>
+    </DockPanel>
 </UserControl>
