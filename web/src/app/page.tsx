@@ -1,7 +1,17 @@
-export default function HomePage() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-      <h1>Web</h1>
-    </main>
-  );
-}
+import { type NextPage } from "next";
+import { createMetadata } from "~/utils/create-metadata";
+
+export const metadata = createMetadata({
+  path: "",
+  title: "Home",
+  description:
+    "Burger Bár - A hely, ahol a legfinomabb hamburgereket készítjük.",
+});
+
+const Page: NextPage = () => (
+  <main className="grid h-screen place-items-center">
+    <h1>Burger Bár</h1>
+  </main>
+);
+
+export default Page;

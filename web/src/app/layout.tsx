@@ -1,19 +1,18 @@
 import "~/styles/globals.css";
 
 import { GeistSans } from "geist/font/sans";
-import { type Metadata } from "next";
+import { Navigation } from "~/components/navigation";
 
-export const metadata: Metadata = {
-  title: "Web",
-  description: "Web",
-};
-
-export default function RootLayout({
+const RootLayout: React.FC<{ readonly children: React.ReactNode }> = ({
   children,
-}: Readonly<{ children: React.ReactNode }>) {
-  return (
-    <html lang="hu" className={`${GeistSans.variable}`}>
-      <body>{children}</body>
-    </html>
-  );
-}
+}) => (
+  <html lang="hu" className={`${GeistSans.variable}`}>
+    <body className="bg-slate-900 text-white">
+      <Navigation />
+
+      {children}
+    </body>
+  </html>
+);
+
+export default RootLayout;

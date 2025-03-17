@@ -1,8 +1,17 @@
+import { type NextPage } from "next";
+import Image from "next/image";
 import { db } from "~/server/db";
 import { menu } from "~/server/db/schema";
-import Image from "next/image";
+import { createMetadata } from "~/utils/create-metadata";
 
-export default async function MenuPage() {
+export const metadata = createMetadata({
+  path: "",
+  title: "Menü",
+  description:
+    "Burger Bár - Menü (A legfinomabb hamburgerek, amiket valaha kóstoltál.)",
+});
+
+const Page: NextPage = async () => {
   const data = await db.select().from(menu).execute();
 
   return (
@@ -21,4 +30,6 @@ export default async function MenuPage() {
       ))}
     </main>
   );
-}
+};
+
+export default Page;
