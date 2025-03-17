@@ -1,6 +1,6 @@
 import { type NextPage } from "next";
 import { Title } from "~/components/title";
-import { createMetadata } from "~/utils/create-metadata";
+import { createMetadata } from "~/lib/create-metadata";
 
 export const metadata = createMetadata({
   path: "/asztalfoglalas",

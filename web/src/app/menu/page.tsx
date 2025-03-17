@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Title } from "~/components/title";
 import { db } from "~/server/db";
 import { menu } from "~/server/db/schema";
-import { createMetadata } from "~/utils/create-metadata";
+import { createMetadata } from "~/lib/create-metadata";
 
 export const metadata = createMetadata({
   path: "/menu",

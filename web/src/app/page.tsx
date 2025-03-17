@@ -1,5 +1,5 @@
 import { type NextPage } from "next";
-import { createMetadata } from "~/utils/create-metadata";
+import { createMetadata } from "~/lib/create-metadata";
 
 export const metadata = createMetadata({
   path: "",
