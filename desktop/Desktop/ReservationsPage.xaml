@@ -31,6 +31,21 @@
                 Text="Burger Bár Admin - Foglalások"/>
         </Grid>
 
-        <Grid Background="White"></Grid>
+        <Grid Background="White">
+            <ListView Name="Reservations">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}"/>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}"/>
+                        <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding Phone}"/>
+                        <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date}"/>
+                        <GridViewColumn Header="Time" DisplayMemberBinding="{Binding Time}"/>
+                        <GridViewColumn Header="People" DisplayMemberBinding="{Binding People}"/>
+                        <GridViewColumn Header="Message" DisplayMemberBinding="{Binding Message}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
     </DockPanel>
 </UserControl>
