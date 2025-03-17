@@ -5,7 +5,7 @@ import { menu } from "~/server/db/schema";
 import { createMetadata } from "~/utils/create-metadata";
 
 export const metadata = createMetadata({
-  path: "",
+  path: "/menu",
   title: "Menü",
   description:
     "Burger Bár - Menü (A legfinomabb hamburgerek, amiket valaha kóstoltál.)",
@@ -15,19 +15,32 @@ const Page: NextPage = async () => {
   const data = await db.select().from(menu).execute();
 
   return (
-    <main className="grid grid-cols-3 gap-4">
-      {data.map((item) => (
-        <div key={item.id} className="rounded bg-white p-4">
-          <h2 className="text-xl font-bold">{item.name}</h2>
-          <Image
-            src={item.image ?? ""}
-            alt={item.name ?? ""}
-            width={200}
-            height={200}
-          />
-          <p>{item.description}</p>
-        </div>
-      ))}
+    <main className="my-20 flex flex-col items-center gap-12">
+      <h1 className="text-4xl font-bold">
+        Burger <span className="text-orange-400">Bár</span> - Menü
+      </h1>
+
+      <div className="grid w-4/5 grid-cols-1 gap-4 text-black md:grid-cols-2 lg:grid-cols-3">
+        {data.map((item) => (
+          <div
+            key={item.id}
+            className="overflow-hidden rounded-lg bg-orange-50"
+          >
+            <Image
+              src={item.image ?? ""}
+              alt={item.name ?? ""}
+              width={600}
+              height={400}
+            />
+
+            <div className="flex flex-col gap-2 p-4">
+              <h2 className="text-xl font-bold">{item.name}</h2>
+              <p>{item.description}</p>
+              <p className="font-bold text-orange-600">{item.price} Ft</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </main>
   );
 };
