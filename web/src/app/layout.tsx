@@ -8,7 +8,7 @@ const RootLayout: React.FC<{ readonly children: React.ReactNode }> = ({
   children,
 }) => (
   <html lang="hu" className={`${GeistSans.variable}`}>
-    <body className="grid min-h-screen grid-cols-1 grid-rows-[1fr_auto] overflow-x-hidden bg-slate-900 text-white">
+    <body className="grid min-h-screen grid-cols-1 grid-rows-[1fr_auto] overflow-x-hidden bg-neutral-800 text-white">
       <div>
         <Navigation />
 
