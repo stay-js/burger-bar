@@ -2,13 +2,13 @@
 
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "sonner";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Textarea } from "./ui/textarea";
-import saveTableReservation from "~/app/actions";
+import saveTableReservation from "~/app/asztalfoglalas/actions";
 import { formSchema, type FormSchema } from "~/lib/form-schema";
-import { toast } from "sonner";
 
 export const TableReservationForm: React.FC = () => {
   const {
@@ -24,8 +24,17 @@ export const TableReservationForm: React.FC = () => {
 
     const { success } = await saveTableReservation(data);
 
-    if (success) toast("Sikeres foglalás!");
-    else toast("Hiba történt a foglalás során!");
+    if (success) {
+      toast("Sikeres foglalás!", {
+        description:
+          "Köszönjük a foglalást! Hamarosan visszaigazolunk. Addig kérjük ne vegye biztosnak a foglalást!",
+      });
+      return;
+    }
+
+    toast("Hiba történt a foglalás során!", {
+      description: "Kérjük próbálja újra később!",
+    });
   };
 
   return (
