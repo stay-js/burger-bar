@@ -16,6 +16,10 @@ namespace Desktop
                     Environment.GetEnvironmentVariable("MYSQL_PASSWORD") ?? "");
 
             InitializeComponent();
+            MainContent.Content = new MainMenu(this);
         }
+
+        public void GoToMenuPage() => MainContent.Content = new MenuPage(this);
+        public void GotToReservationsPage() => MainContent.Content = new ReservationsPage(this);
     }
 }
