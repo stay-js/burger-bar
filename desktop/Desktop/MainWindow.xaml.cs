@@ -9,7 +9,7 @@ namespace Desktop
 
         public MainWindow()
         {
-            DotEnv.Load("../../../.env");
+            DotEnv.Load("../../../../.env");
             DBClient = new(Environment.GetEnvironmentVariable("MYSQL_URL") ?? "",
                     Environment.GetEnvironmentVariable("MYSQL_DATABASE") ?? "",
                     Environment.GetEnvironmentVariable("MYSQL_USER") ?? "",
