@@ -74,12 +74,12 @@
                         Content="Törlés"
                         Margin="5"
                         Padding="10,5"
-                        Click="Delete_Click"/>
+                        Click="DeleteButton_Click"/>
                     <Button 
                         Content="Módosítás"
                         Margin="5"
                         Padding="10,5"
-                        Click="Modify_Click"/>
+                        Click="ModifyButton_Click"/>
                 </StackPanel>
             </Grid>
         </Grid>

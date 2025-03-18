@@ -39,28 +39,21 @@ namespace Desktop
             Menu.ItemsSource = menuItems;
         }
 
-        private void Modify_Click(object sender, RoutedEventArgs e)
+        private void ModifyButton_Click(object sender, RoutedEventArgs e)
         {
             if (Menu.SelectedItems.Count == 0) return;
             if (Menu.SelectedItems.Count > 1)
             {
-                MessageBox.Show("Egyszerre csak egy elemet lehet módosítani!",
-                    "Figyelmezetés",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Warning);
+                MessageBoxHelper.ModifyMoreThanOneWarning();
                 return;
             }
         }
 
-        private void Delete_Click(object sender, RoutedEventArgs e)
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             if (Menu.SelectedItems.Count == 0) return;
 
-            var result = MessageBox.Show(
-                "Biztosan törölni szeretné a kijelölt eleme(ke)t?",
-                "Elem(ek) törlése",
-                MessageBoxButton.YesNo);
-
+            var result = MessageBoxHelper.DeleteConfirmation();
             if (result == MessageBoxResult.No) return;
 
             var ids = Menu.SelectedItems.Cast<Desktop_Lib.MenuItem>().Select(x => x.ID);

@@ -42,28 +42,21 @@ namespace Desktop
             Reservations.ItemsSource = reservations;
         }
 
-        private void Modify_Click(object sender, RoutedEventArgs e)
+        private void ModifyButton_Click(object sender, RoutedEventArgs e)
         {
             if (Reservations.SelectedItems.Count == 0) return;
             if (Reservations.SelectedItems.Count > 1)
             {
-                MessageBox.Show("Egyszerre csak egy elemet lehet módosítani!",
-                   "Figyelmezetés",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Warning);
+                MessageBoxHelper.ModifyMoreThanOneWarning();
                 return;
             }
         }
 
-        private void Delete_Click(object sender, RoutedEventArgs e)
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             if (Reservations.SelectedItems.Count == 0) return;
 
-            var result = MessageBox.Show(
-                "Biztosan törölni szeretné a kijelölt eleme(ke)t?",
-                "Elem(ek) törlése",
-                MessageBoxButton.YesNo);
-
+            var result = MessageBoxHelper.DeleteConfirmation();
             if (result == MessageBoxResult.No) return;
 
             var ids = Reservations.SelectedItems.Cast<ReservationItem>().Select(x => x.ID);
