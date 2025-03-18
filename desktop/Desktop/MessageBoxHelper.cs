@@ -34,5 +34,13 @@ namespace Desktop
                 MessageBoxButton.OK,
                 MessageBoxImage.Warning);
         }
+
+        public static void InvalidTimeWarning()
+        {
+            MessageBox.Show("Hibás időpont!",
+                "Figyelmezetés",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
     }
 }

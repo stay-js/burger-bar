@@ -50,6 +50,23 @@ namespace Desktop
                 MessageBoxHelper.ModifyMoreThanOneWarning();
                 return;
             }
+
+            var item = (Reservations.SelectedItem as ReservationItem)!;
+
+            var modifyDialog = new ModifyReservationDialog(item);
+
+            if (modifyDialog.ShowDialog() == true)
+            {
+                _mainWindow
+                    .DBClient
+                    .ExecuteQuery($"UPDATE `table-reservation` SET " +
+                    $"date = '{modifyDialog.Date.SelectedDate:yyyy-MM-dd}', " +
+                    $"time = '{modifyDialog.Time.Text}', " +
+                    $"people = {modifyDialog.People.Text} " +
+                    $"WHERE id = {item.ID}");
+
+                LoadReservations();
+            }
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
