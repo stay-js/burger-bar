@@ -47,8 +47,8 @@ namespace Desktop
             if (Reservations.SelectedItems.Count == 0) return;
             if (Reservations.SelectedItems.Count > 1)
             {
-                MessageBox.Show("Egyszerre csak egy foglalást lehet módosítani!",
-                    "Figyelmezetés",
+                MessageBox.Show("Egyszerre csak egy elemet lehet módosítani!",
+                   "Figyelmezetés",
                     MessageBoxButton.OK,
                     MessageBoxImage.Warning);
                 return;
@@ -60,8 +60,8 @@ namespace Desktop
             if (Reservations.SelectedItems.Count == 0) return;
 
             var result = MessageBox.Show(
-                "Biztosan törölni szeretné a kijelölt foglalást/foglalásokat?",
-                "Foglalás(ok) törlése",
+                "Biztosan törölni szeretné a kijelölt eleme(ke)t?",
+                "Elem(ek) törlése",
                 MessageBoxButton.YesNo);
 
             if (result == MessageBoxResult.No) return;

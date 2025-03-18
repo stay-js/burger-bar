@@ -64,7 +64,7 @@
                     Orientation="Horizontal"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left">
-                    <TextBlock Margin="5" Text="Kijelőlt elemek:"/>
+                    <TextBlock Margin="5" Text="Kijelölt elemek:"/>
                     <TextBlock Margin="5" Text="{Binding SelectedItems.Count, ElementName=Reservations}"/>
                 </StackPanel>
 

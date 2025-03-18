@@ -32,6 +32,11 @@
         </Grid>
 
         <Grid Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
             <ListView Name="Menu">
                 <ListView.View>
                     <GridView>
@@ -43,6 +48,40 @@
                     </GridView>
                 </ListView.View>
             </ListView>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel
+                    Margin="5,0"
+                    Grid.Column="0"
+                    Orientation="Horizontal"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left">
+                    <TextBlock Margin="5" Text="Kijelölt elemek:"/>
+                    <TextBlock Margin="5" Text="{Binding SelectedItems.Count, ElementName=Menu}"/>
+                </StackPanel>
+
+                <StackPanel
+                    Margin="5,0"
+                    Grid.Column="1"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+                    <Button
+                        Content="Törlés"
+                        Margin="5"
+                        Padding="10,5"
+                        Click="Delete_Click"/>
+                    <Button 
+                        Content="Módosítás"
+                        Margin="5"
+                        Padding="10,5"
+                        Click="Modify_Click"/>
+                </StackPanel>
+            </Grid>
         </Grid>
     </DockPanel>
 </UserControl>
