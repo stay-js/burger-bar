@@ -3,7 +3,6 @@ using System.Data;
 using System.Windows;
 using System.Windows.Controls;
 
-
 namespace Desktop
 {
     public partial class ReservationsPage : UserControl
@@ -41,6 +40,36 @@ namespace Desktop
             }
 
             Reservations.ItemsSource = reservations;
+        }
+
+        private void Modify_Click(object sender, RoutedEventArgs e)
+        {
+            if (Reservations.SelectedItems.Count == 0) return;
+            if (Reservations.SelectedItems.Count > 1)
+            {
+                MessageBox.Show("Egyszerre csak egy foglalást lehet módosítani!",
+                    "Figyelmezetés",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+                return;
+            }
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            if (Reservations.SelectedItems.Count == 0) return;
+
+            var result = MessageBox.Show("Biztosan törölni szeretné a kijelölt foglalást/foglalásokat?",
+                "Foglalás(ok) törlése",
+                MessageBoxButton.YesNo);
+
+            if (result == MessageBoxResult.No) return;
+
+            var ids = Reservations.SelectedItems.Cast<ReservationItem>().Select(x => x.ID);
+
+            _mainWindow.DBClient.ExecuteQuery($"DELETE FROM `table-reservation` WHERE id IN({string.Join(", ", ids)})");
+
+            LoadReservations();
         }
     }
 }

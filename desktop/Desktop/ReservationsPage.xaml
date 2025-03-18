@@ -32,7 +32,12 @@
         </Grid>
 
         <Grid Background="White">
-            <ListView Name="Reservations">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <ListView Grid.Row="0" Name="Reservations">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}"/>
@@ -46,6 +51,23 @@
                     </GridView>
                 </ListView.View>
             </ListView>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                
+                <StackPanel Margin="5,0" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <TextBlock Margin="5" Text="Kijelőlt elemek:"/>
+                    <TextBlock Margin="5" Text="{Binding SelectedItems.Count, ElementName=Reservations}"/>
+                </StackPanel>
+
+                <StackPanel Margin="5,0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Name="Delete" Click="Delete_Click" Margin="5" Padding="10,5" Content="Törlés" IsEnabled="{Binding CanDelete}"/>
+                    <Button Name="Modify" Click="Modify_Click" Margin="5" Padding="10,5" Content="Módosítás"/>
+                </StackPanel>
+            </Grid>
         </Grid>
     </DockPanel>
 </UserControl>
