@@ -42,5 +42,13 @@ namespace Desktop
                 MessageBoxButton.OK,
                 MessageBoxImage.Warning);
         }
+
+        public static void InvalidPeopleCountWarning()
+        {
+            MessageBox.Show("A vendégek száma csak egész szám lehet!",
+                "Figyelmezetés",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
     }
 }

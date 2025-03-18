@@ -40,6 +40,12 @@ namespace Desktop
                 return;
             }
 
+            if (!int.TryParse(People.Text, out _))
+            {
+                MessageBoxHelper.InvalidPeopleCountWarning();
+                return;
+            }
+
             DialogResult = true;
         }
     }
