@@ -58,14 +58,31 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 
-                <StackPanel Margin="5,0" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                <StackPanel
+                    Margin="5,0"
+                    Grid.Column="0"
+                    Orientation="Horizontal"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left">
                     <TextBlock Margin="5" Text="Kijelőlt elemek:"/>
                     <TextBlock Margin="5" Text="{Binding SelectedItems.Count, ElementName=Reservations}"/>
                 </StackPanel>
 
-                <StackPanel Margin="5,0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Name="Delete" Click="Delete_Click" Margin="5" Padding="10,5" Content="Törlés" IsEnabled="{Binding CanDelete}"/>
-                    <Button Name="Modify" Click="Modify_Click" Margin="5" Padding="10,5" Content="Módosítás"/>
+                <StackPanel
+                    Margin="5,0"
+                    Grid.Column="1"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+                    <Button
+                        Content="Törlés"
+                        Margin="5"
+                        Padding="10,5"
+                        Click="Delete_Click"/>
+                    <Button 
+                        Content="Módosítás"
+                        Margin="5"
+                        Padding="10,5"
+                        Click="Modify_Click"/>
                 </StackPanel>
             </Grid>
         </Grid>

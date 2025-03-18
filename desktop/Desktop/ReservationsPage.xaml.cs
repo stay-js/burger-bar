@@ -59,7 +59,8 @@ namespace Desktop
         {
             if (Reservations.SelectedItems.Count == 0) return;
 
-            var result = MessageBox.Show("Biztosan törölni szeretné a kijelölt foglalást/foglalásokat?",
+            var result = MessageBox.Show(
+                "Biztosan törölni szeretné a kijelölt foglalást/foglalásokat?",
                 "Foglalás(ok) törlése",
                 MessageBoxButton.YesNo);
 
@@ -67,7 +68,9 @@ namespace Desktop
 
             var ids = Reservations.SelectedItems.Cast<ReservationItem>().Select(x => x.ID);
 
-            _mainWindow.DBClient.ExecuteQuery($"DELETE FROM `table-reservation` WHERE id IN({string.Join(", ", ids)})");
+            _mainWindow
+                .DBClient
+                .ExecuteQuery($"DELETE FROM `table-reservation` WHERE id IN({string.Join(", ", ids)})");
 
             LoadReservations();
         }
