@@ -1,10 +1,11 @@
-﻿using System.Windows;
+﻿using Desktop_Lib;
+using System.Windows;
 
 namespace Desktop
 {
     public partial class ModifyMenuItemDialog : Window
     {
-        public ModifyMenuItemDialog(Desktop_Lib.MenuItem? item)
+        public ModifyMenuItemDialog(MenuItem? item)
         {
             InitializeComponent();
 
@@ -27,7 +28,7 @@ namespace Desktop
                 return;
             }
 
-            if (!int.TryParse(Price.Text, out _))
+            if (!Validator.ValidateInt(Price.Text))
             {
                 MessageBoxHelper.InvalidPriceWarning();
                 return;

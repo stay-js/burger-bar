@@ -24,23 +24,13 @@ namespace Desktop
                 return;
             }
 
-            try
-            {
-                int[] parts = Time.Text.Split(':').Select(int.Parse).ToArray();
-
-                if (parts.Length != 2 || parts[0] < 0 || parts[0] > 23 || parts[1] < 0 || parts[1] > 59)
-                {
-                    MessageBoxHelper.InvalidTimeWarning();
-                    return;
-                }
-            }
-            catch
+            if (!Validator.ValidateTime(Time.Text))
             {
                 MessageBoxHelper.InvalidTimeWarning();
                 return;
             }
 
-            if (!int.TryParse(People.Text, out _))
+            if (!Validator.ValidateInt(People.Text))
             {
                 MessageBoxHelper.InvalidPeopleCountWarning();
                 return;
