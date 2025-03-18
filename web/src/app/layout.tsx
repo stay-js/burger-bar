@@ -13,7 +13,7 @@ const RootLayout: React.FC<{ readonly children: React.ReactNode }> = ({
       <div>
         <Navigation />
 
-        <div className="my-12 px-6">{children}</div>
+        {children}
       </div>
 
       <Footer />
