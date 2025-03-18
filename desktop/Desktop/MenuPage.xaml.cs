@@ -47,8 +47,25 @@ namespace Desktop
                 MessageBoxHelper.ModifyMoreThanOneWarning();
                 return;
             }
-        }
 
+            var item = (Menu.SelectedItem as Desktop_Lib.MenuItem)!;
+
+            var modifyDialog = new ModifyMenuItemDialog(item);
+
+            if (modifyDialog.ShowDialog() == true)
+            {
+                _mainWindow
+                    .DBClient
+                    .ExecuteQuery($"UPDATE `menu` " +
+                    $"SET name = '{modifyDialog.ItemName.Text}', " +
+                    $"price = {modifyDialog.Price.Text}, " +
+                    $"description = '{modifyDialog.Description.Text}', " +
+                    $"image = '{modifyDialog.Image.Text}' " +
+                    $"WHERE id = {item.ID}");
+
+                LoadMenu();
+            }
+        }
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             if (Menu.SelectedItems.Count == 0) return;

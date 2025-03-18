@@ -18,5 +18,21 @@ namespace Desktop
                 "Elem(ek) törlése",
                 MessageBoxButton.YesNo);
         }
+
+        public static void InvalidPriceWarning()
+        {
+            MessageBox.Show("Az ár csak egész szám lehet!",
+                "Figyelmezetés",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
+
+        public static void EmptyFieldsWarning()
+        {
+            MessageBox.Show("Minden mező kitöltése kötelező!",
+                "Figyelmezetés",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
     }
 }
