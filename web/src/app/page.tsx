@@ -20,7 +20,7 @@ const Page: NextPage = async () => {
   return (
     <main>
       <section>
-        <div className="flex min-h-[70vh] flex-col items-center justify-center gap-4 bg-[url('/placeholder.webp')] bg-cover bg-center px-4 text-center text-white">
+        <div className="flex min-h-[70vh] flex-col items-center justify-center gap-4 bg-[url('/images/burger-bg.jpg')] bg-cover bg-center px-4 text-center text-white">
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
             Burger Bár
           </h1>
@@ -72,10 +72,10 @@ const Page: NextPage = async () => {
 
             <Image
               className="aspect-video rounded-lg"
-              src="/placeholder.webp"
-              alt="Chef preparing Hungarian-inspired burgers"
-              width={1280}
-              height={720}
+              src="/images/gourmet-burger.webp"
+              alt="Gourmet burger"
+              width={1456}
+              height={816}
             />
           </div>
         </div>
