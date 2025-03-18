@@ -4,9 +4,11 @@ namespace Desktop
 {
     public partial class ModifyMenuItemDialog : Window
     {
-        public ModifyMenuItemDialog(Desktop_Lib.MenuItem item)
+        public ModifyMenuItemDialog(Desktop_Lib.MenuItem? item)
         {
             InitializeComponent();
+
+            if (item is null) return;
 
             ItemName.Text = item.Name;
             Price.Text = item.Price.ToString();

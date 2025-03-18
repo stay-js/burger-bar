@@ -39,6 +39,22 @@ namespace Desktop
             Menu.ItemsSource = menuItems;
         }
 
+        private void CreateButton_Click(object sender, RoutedEventArgs e)
+        {
+            var createDialog = new ModifyMenuItemDialog(null);
+
+            if (createDialog.ShowDialog() == true)
+            {
+                _mainWindow
+                    .DBClient
+                    .ExecuteQuery($"INSERT INTO `menu` (name, price, description, image) " +
+                    $"VALUES ('{createDialog.ItemName.Text}', {createDialog.Price.Text}, " +
+                    $"'{createDialog.Description.Text}', '{createDialog.Image.Text}')");
+
+                LoadMenu();
+            }
+        }
+
         private void ModifyButton_Click(object sender, RoutedEventArgs e)
         {
             if (Menu.SelectedItems.Count == 0) return;
