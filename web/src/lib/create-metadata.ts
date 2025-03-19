@@ -21,8 +21,6 @@ export const createMetadata = ({
 
   keywords: "Burger Bár, Burger, Bár, Menü, Asztalfoglalás, Étel, Hamburger",
 
-  colorScheme: "dark",
-
   title: `${title} - Burger Bár`,
   description,
 
