@@ -17,12 +17,17 @@ export const BurgerCard: React.FC<{
         className="object-cover transition-transform duration-300 group-hover:scale-105"
       />
     </div>
-    <div className="p-4">
-      <div className="flex items-center justify-between">
+
+    <div className="flex flex-col gap-2 p-4">
+      <div className="flex items-start justify-between gap-4">
         <h3 className="font-bold">{burger.name}</h3>
-        <span className="font-medium text-orange-400">{burger.price} Ft</span>
+
+        <span className="text-nowrap font-medium text-orange-400">
+          {burger.price} Ft
+        </span>
       </div>
-      <p className="mt-2 text-sm text-muted-foreground">{burger.description}</p>
+
+      <p className="text-sm text-muted-foreground">{burger.description}</p>
     </div>
   </div>
 );
