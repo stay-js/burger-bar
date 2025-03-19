@@ -49,36 +49,26 @@ const Page: NextPage = async () => {
         </div>
       </section>
 
-      <section className="py-16">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="grid gap-10 md:grid-cols-2 md:gap-16">
-            <div className="flex flex-col gap-4">
-              <h2 className="text-3xl font-bold tracking-tight">Történetünk</h2>
+      <section className="grid w-full gap-10 md:grid-cols-2 md:gap-16">
+        <div className="flex flex-col gap-4 px-6 py-12 md:px-12 md:py-24">
+          <h2 className="text-3xl font-bold tracking-tight">Történetünk</h2>
 
-              <p className="text-white/80">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Explicabo error ullam ab, fugiat aspernatur placeat reiciendis
-                accusamus corrupti ad soluta non eligendi, temporibus ex qui
-                suscipit laudantium enim minus dolor?
-              </p>
+          <p className="text-white/80">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo
+            error ullam ab, fugiat aspernatur placeat reiciendis accusamus
+            corrupti ad soluta non eligendi, temporibus ex qui suscipit
+            laudantium enim minus dolor?
+          </p>
 
-              <p className="text-white/80">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Explicabo error ullam ab, fugiat aspernatur placeat reiciendis
-                accusamus corrupti ad soluta non eligendi, temporibus ex qui
-                suscipit laudantium enim minus dolor?
-              </p>
-            </div>
-
-            <Image
-              className="aspect-video rounded-lg"
-              src="/images/gourmet-burger.webp"
-              alt="Gourmet burger"
-              width={1456}
-              height={816}
-            />
-          </div>
+          <p className="text-white/80">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo
+            error ullam ab, fugiat aspernatur placeat reiciendis accusamus
+            corrupti ad soluta non eligendi, temporibus ex qui suscipit
+            laudantium enim minus dolor?
+          </p>
         </div>
+
+        <div className="h-full w-full bg-[url('/images/gourmet-burger.webp')] bg-cover bg-center" />
       </section>
 
       <section className="bg-neutral-100 py-16 text-black">
