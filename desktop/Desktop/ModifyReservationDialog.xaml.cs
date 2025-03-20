@@ -10,7 +10,7 @@ namespace Desktop
             InitializeComponent();
 
             Date.SelectedDate = item.Date;
-            Time.Text = item.Time;
+            Time.Text = item.Date.ToShortTimeString();
             People.Text = item.People.ToString();
         }
 

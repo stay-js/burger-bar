@@ -44,8 +44,11 @@
                         <GridViewColumn Header="Név" DisplayMemberBinding="{Binding Name}"/>
                         <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}"/>
                         <GridViewColumn Header="Telefonszám" DisplayMemberBinding="{Binding Phone}"/>
-                        <GridViewColumn Header="Dátum" DisplayMemberBinding="{Binding Date, StringFormat='yyyy.MM.dd'}"/>
-                        <GridViewColumn Header="Időpont" DisplayMemberBinding="{Binding Time}"/>
+                        
+                        <GridViewColumn
+                            Header="Dátum és időpont"
+                            DisplayMemberBinding="{Binding Date, StringFormat='yyyy.MM.dd HH:mm'}"/>
+                        
                         <GridViewColumn Header="Hány főre?" DisplayMemberBinding="{Binding People}"/>
                         <GridViewColumn Header="Üzenet" DisplayMemberBinding="{Binding Message}"/>
                     </GridView>
@@ -65,7 +68,10 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left">
                     <TextBlock Margin="5" Text="Kijelölt elemek:"/>
-                    <TextBlock Margin="5" Text="{Binding SelectedItems.Count, ElementName=Reservations}"/>
+                    
+                    <TextBlock
+                        Margin="5"
+                        Text="{Binding SelectedItems.Count, ElementName=Reservations}"/>
                 </StackPanel>
 
                 <StackPanel
