@@ -34,7 +34,6 @@ namespace Desktop
                     row["email"].ToString() ?? "",
                     row["phone"].ToString() ?? "",
                     Convert.ToDateTime(row["date"]),
-                    row["time"].ToString() ?? "",
                     Convert.ToInt32(row["people"]),
                     row["message"].ToString() ?? ""));
             }
@@ -60,8 +59,7 @@ namespace Desktop
                 _mainWindow
                     .DBClient
                     .ExecuteQuery($"UPDATE `table-reservation` SET " +
-                    $"date = '{modifyDialog.Date.SelectedDate:yyyy-MM-dd}', " +
-                    $"time = '{modifyDialog.Time.Text}', " +
+                    $"date = '{modifyDialog.Date.SelectedDate:yyyy.MM.dd} {modifyDialog.Time.Text}', " +
                     $"people = {modifyDialog.People.Text} " +
                     $"WHERE id = {item.ID}");
 
