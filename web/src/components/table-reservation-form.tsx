@@ -42,9 +42,6 @@ export const TableReservationForm: React.FC = () => {
   const onSubmit: SubmitHandler<FormSchema> = async (data) => {
     reset();
 
-    setDate(new Date());
-    setTime(undefined);
-
     const { success } = await saveTableReservation(data);
 
     if (success) {

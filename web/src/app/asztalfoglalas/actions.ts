@@ -9,9 +9,14 @@ export default async function saveTableReservation(formData: FormSchema) {
 
   if (!result.success) return { success: false };
 
+  const year = result.data.date.getFullYear();
+  const month = result.data.date.getMonth();
+  const day = result.data.date.getDate();
+  const [hours, minutes] = result.data.time.split(":").map(Number);
+
   const toInsert = {
     ...result.data,
-    date: new Date(`${result.data.date.toDateString()} ${result.data.time}`),
+    date: new Date(Date.UTC(year, month, day, hours, minutes)),
     people: Number(result.data.people),
   };
 
