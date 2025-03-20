@@ -8,21 +8,21 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Textarea } from "./ui/textarea";
+import { DatePicker } from "./ui/date-picker";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "~/components/ui/select";
-import saveTableReservation from "~/app/asztalfoglalas/actions";
+} from "./ui/select";
 import { formSchema, type FormSchema } from "~/lib/form-schema";
-import { DatePicker } from "./ui/date-picker";
 import { openingHours } from "~/lib/opening-hours";
+import saveTableReservation from "~/app/asztalfoglalas/actions";
 
 export const TableReservationForm: React.FC = () => {
   const [date, setDate] = useState<Date | undefined>(new Date());
-  const [time, setTime] = useState<string | undefined>();
+  const [time, setTime] = useState<string | undefined>(undefined);
 
   const {
     register,
@@ -41,7 +41,9 @@ export const TableReservationForm: React.FC = () => {
 
   const onSubmit: SubmitHandler<FormSchema> = async (data) => {
     reset();
+
     setDate(new Date());
+    setTime(undefined);
 
     const { success } = await saveTableReservation(data);
 
@@ -113,7 +115,7 @@ export const TableReservationForm: React.FC = () => {
 
       <div>
         <Label htmlFor="date">
-          Dátum (év, hónap, nap): <span className="text-red-500">*</span>
+          Dátum: <span className="text-red-500">*</span>
         </Label>
 
         <DatePicker date={date} setDate={setDate} />
@@ -125,7 +127,7 @@ export const TableReservationForm: React.FC = () => {
 
       <div>
         <Label htmlFor="time">
-          Időpont (óra, perc): <span className="text-red-500">*</span>
+          Időpont: <span className="text-red-500">*</span>
         </Label>
 
         <Select value={time} onValueChange={setTime}>
@@ -133,10 +135,7 @@ export const TableReservationForm: React.FC = () => {
             <SelectValue placeholder="Válasszon időpontot" />
           </SelectTrigger>
           <SelectContent>
-            {([0, 6].includes(date?.getDay() ?? -1)
-              ? openingHours.weekend
-              : openingHours.weekDays
-            ).slots.map((slot) => (
+            {openingHours.slots(date).map((slot) => (
               <SelectItem key={slot} value={slot}>
                 {slot}
               </SelectItem>

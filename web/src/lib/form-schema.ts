@@ -15,7 +15,7 @@ export const formSchema = z.object({
   }),
   time: z
     .string()
-    .min(1, { message: "Adja meg az időpontot!" })
+    .min(1, { message: "Válasszon időpontot!" })
     .refine(
       (time) => {
         const [hours, minutes] = time.split(":").map((part) => Number(part));
