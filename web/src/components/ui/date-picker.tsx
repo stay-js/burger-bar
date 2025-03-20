@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { format } from "date-fns";
+import { hu } from "date-fns/locale";
 import { CalendarIcon } from "lucide-react";
 
 import { cn } from "~/lib/utils";
@@ -34,7 +35,7 @@ export const DatePicker: React.FC<{
     </PopoverTrigger>
     <PopoverContent className="w-auto p-0">
       <Calendar
-        ISOWeek
+        locale={hu}
         mode="single"
         selected={date}
         onSelect={setDate}
