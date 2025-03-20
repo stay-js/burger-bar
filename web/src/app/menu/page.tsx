@@ -18,7 +18,7 @@ const Page: NextPage = async () => {
     <main className="my-12 flex flex-col items-center gap-12 px-6">
       <Title>Menü</Title>
 
-      <div className="grid grid-cols-1 gap-4 text-black sm:w-4/5 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 text-black sm:w-4/5 md:grid-cols-2 lg:grid-cols-3">
         {data.map((item) => (
           <BurgerCard key={item.id} burger={item} />
         ))}
