@@ -8,12 +8,21 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Textarea } from "./ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "~/components/ui/select";
 import saveTableReservation from "~/app/asztalfoglalas/actions";
 import { formSchema, type FormSchema } from "~/lib/form-schema";
 import { DatePicker } from "./ui/date-picker";
+import { openingHours } from "~/lib/opening-hours";
 
 export const TableReservationForm: React.FC = () => {
   const [date, setDate] = useState<Date | undefined>(new Date());
+  const [time, setTime] = useState<string | undefined>();
 
   const {
     register,
@@ -26,6 +35,9 @@ export const TableReservationForm: React.FC = () => {
 
   register("date");
   useEffect(() => setValue("date", date ?? new Date()), [date, setValue]);
+
+  register("time");
+  useEffect(() => setValue("time", time ?? ""), [time, setValue]);
 
   const onSubmit: SubmitHandler<FormSchema> = async (data) => {
     reset();
@@ -116,12 +128,21 @@ export const TableReservationForm: React.FC = () => {
           Időpont (óra, perc): <span className="text-red-500">*</span>
         </Label>
 
-        <Input
-          id="time"
-          type="text"
-          placeholder="19:00"
-          {...register("time")}
-        />
+        <Select value={time} onValueChange={setTime}>
+          <SelectTrigger id="time" {...register("time")}>
+            <SelectValue placeholder="Válasszon időpontot" />
+          </SelectTrigger>
+          <SelectContent>
+            {([0, 6].includes(date?.getDay() ?? -1)
+              ? openingHours.weekend
+              : openingHours.weekDays
+            ).slots.map((slot) => (
+              <SelectItem key={slot} value={slot}>
+                {slot}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
 
         {errors.time && (
           <span className="text-xs text-red-500">{errors.time.message}</span>

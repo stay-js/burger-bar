@@ -34,6 +34,7 @@ export const DatePicker: React.FC<{
     </PopoverTrigger>
     <PopoverContent className="w-auto p-0">
       <Calendar
+        ISOWeek
         mode="single"
         selected={date}
         onSelect={setDate}
