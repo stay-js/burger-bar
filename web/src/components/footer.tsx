@@ -57,6 +57,12 @@ export const Footer: React.FC = () => (
         </Item>
         <Item href="tel:+3611111111">Tel: +36 1 111 1111</Item>
         <li>Fax: +36 1 111 1111</li>
+
+        <li className="mt-4">Nyitvatartás:</li>
+        <ul>
+          <li>H-P: 10:00 - 22:00</li>
+          <li>Sz-V: 10:00 - 19:00</li>
+        </ul>
       </Column>
 
       <Column title="Burger Bár - Újpest">
@@ -64,13 +70,25 @@ export const Footer: React.FC = () => (
         <Item href="mailto:ujpest@burger-bar.hu">ujpest@burger-bar.hu</Item>
         <Item href="tel:+3612222222">Tel: +36 1 222 2222</Item>
         <li>Fax: +36 1 222 2222</li>
+
+        <li className="mt-4">Nyitvatartás:</li>
+        <ul>
+          <li>H-P: 10:00 - 22:00</li>
+          <li>Sz-V: 10:00 - 19:00</li>
+        </ul>
       </Column>
 
       <Column title="Burger Bár - Buda">
-        <li>1016 Bp., Krisztina krt. 99.</li>
+        <li>1016 Bp., Véletlen krt. 26.</li>
         <Item href="mailto:buda@burger-bar.hu">buda@burger-bar.hu</Item>
         <Item href="tel:+3613333333">Tel: +36 1 333 3333</Item>
         <li>Fax: +36 1 333 3333</li>
+
+        <li className="mt-4">Nyitvatartás:</li>
+        <ul>
+          <li>H-P: 10:00 - 22:00</li>
+          <li>Sz-V: 10:00 - 19:00</li>
+        </ul>
       </Column>
 
       <Column title="Tanúsítványok">
