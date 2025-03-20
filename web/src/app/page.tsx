@@ -48,7 +48,7 @@ const Page: NextPage = async () => {
             </Link>
 
             <Link href="/asztalfoglalas">
-              <Button size="lg" variant="outline" className="text-black">
+              <Button size="lg" variant="default" className="text-black">
                 Asztalfoglalás
               </Button>
             </Link>

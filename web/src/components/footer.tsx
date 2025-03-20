@@ -7,16 +7,19 @@ import {
   FaPhoneAlt,
 } from "react-icons/fa";
 import { Anchor } from "./anchor";
+import { openingHours } from "~/lib/opening-hours";
 
 const Column: React.FC<{ children: React.ReactNode; title: string }> = ({
   children,
   title,
 }) => (
-  <div>
-    <h2 className="relative mb-8 text-xl text-white after:absolute after:bottom-[-10px] after:block after:h-[2px] after:w-[50px] after:bg-orange-400">
-      {title}
-    </h2>
-    <ul className="flex flex-col gap-1">{children}</ul>
+  <div className="flex xl:justify-end">
+    <div>
+      <h2 className="relative mb-8 text-xl text-white after:absolute after:bottom-[-10px] after:block after:h-[2px] after:w-[50px] after:bg-orange-400">
+        {title}
+      </h2>
+      <ul className="flex flex-col gap-1">{children}</ul>
+    </div>
   </div>
 );
 
@@ -47,6 +50,23 @@ const Icon: React.FC<{
   </Link>
 );
 
+const OpeningHours: React.FC = () => (
+  <>
+    <li className="mt-4">Nyitvatartás:</li>
+
+    <ul>
+      <li>
+        H-P: {openingHours.weekDays.open}:00 - {openingHours.weekDays.close}
+        :00
+      </li>
+      <li>
+        Sz-V: {openingHours.weekend.open}:00 - {openingHours.weekend.close}
+        :00
+      </li>
+    </ul>
+  </>
+);
+
 export const Footer: React.FC = () => (
   <footer className="row-start-2 bg-zinc-900 px-6 py-16 text-neutral-200">
     <div className="grid w-fit gap-x-16 gap-y-8 sm:mx-auto sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -58,11 +78,7 @@ export const Footer: React.FC = () => (
         <Item href="tel:+3611111111">Tel: +36 1 111 1111</Item>
         <li>Fax: +36 1 111 1111</li>
 
-        <li className="mt-4">Nyitvatartás:</li>
-        <ul>
-          <li>H-P: 10:00 - 22:00</li>
-          <li>Sz-V: 10:00 - 19:00</li>
-        </ul>
+        <OpeningHours />
       </Column>
 
       <Column title="Burger Bár - Újpest">
@@ -71,11 +87,7 @@ export const Footer: React.FC = () => (
         <Item href="tel:+3612222222">Tel: +36 1 222 2222</Item>
         <li>Fax: +36 1 222 2222</li>
 
-        <li className="mt-4">Nyitvatartás:</li>
-        <ul>
-          <li>H-P: 10:00 - 22:00</li>
-          <li>Sz-V: 10:00 - 19:00</li>
-        </ul>
+        <OpeningHours />
       </Column>
 
       <Column title="Burger Bár - Buda">
@@ -84,11 +96,7 @@ export const Footer: React.FC = () => (
         <Item href="tel:+3613333333">Tel: +36 1 333 3333</Item>
         <li>Fax: +36 1 333 3333</li>
 
-        <li className="mt-4">Nyitvatartás:</li>
-        <ul>
-          <li>H-P: 10:00 - 22:00</li>
-          <li>Sz-V: 10:00 - 19:00</li>
-        </ul>
+        <OpeningHours />
       </Column>
 
       <Column title="Tanúsítványok">
