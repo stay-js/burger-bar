@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
@@ -9,18 +10,26 @@ import { Label } from "./ui/label";
 import { Textarea } from "./ui/textarea";
 import saveTableReservation from "~/app/asztalfoglalas/actions";
 import { formSchema, type FormSchema } from "~/lib/form-schema";
+import { DatePicker } from "./ui/date-picker";
 
 export const TableReservationForm: React.FC = () => {
+  const [date, setDate] = useState<Date | undefined>(new Date());
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
     // eslint-disable-next-line
   } = useForm<FormSchema>({ resolver: zodResolver(formSchema) });
 
+  register("date");
+  useEffect(() => setValue("date", date ?? new Date()), [date, setValue]);
+
   const onSubmit: SubmitHandler<FormSchema> = async (data) => {
     reset();
+    setDate(new Date());
 
     const { success } = await saveTableReservation(data);
 
@@ -49,8 +58,8 @@ export const TableReservationForm: React.FC = () => {
         <Input
           id="name"
           type="text"
-          {...register("name")}
           placeholder="Minta János"
+          {...register("name")}
         />
 
         {errors.name && (
@@ -65,8 +74,8 @@ export const TableReservationForm: React.FC = () => {
         <Input
           id="email"
           type="text"
-          {...register("email")}
           placeholder="example@example.hu"
+          {...register("email")}
         />
 
         {errors.email && (
@@ -81,8 +90,8 @@ export const TableReservationForm: React.FC = () => {
         <Input
           id="phone"
           type="text"
-          {...register("phone")}
           placeholder="+36 30 111 1111"
+          {...register("phone")}
         />
 
         {errors.phone && (
@@ -94,12 +103,8 @@ export const TableReservationForm: React.FC = () => {
         <Label htmlFor="date">
           Dátum (év, hónap, nap): <span className="text-red-500">*</span>
         </Label>
-        <Input
-          id="date"
-          type="text"
-          {...register("date")}
-          placeholder="2025-01-01"
-        />
+
+        <DatePicker date={date} setDate={setDate} />
 
         {errors.date && (
           <span className="text-xs text-red-500">{errors.date.message}</span>
@@ -110,11 +115,12 @@ export const TableReservationForm: React.FC = () => {
         <Label htmlFor="time">
           Időpont (óra, perc): <span className="text-red-500">*</span>
         </Label>
+
         <Input
           id="time"
           type="text"
-          {...register("time")}
           placeholder="19:00"
+          {...register("time")}
         />
 
         {errors.time && (
@@ -129,8 +135,8 @@ export const TableReservationForm: React.FC = () => {
         <Input
           id="people"
           type="text"
-          {...register("people")}
           placeholder="4"
+          {...register("people")}
         />
 
         {errors.people && (
@@ -143,7 +149,7 @@ export const TableReservationForm: React.FC = () => {
         <Textarea id="message" rows={8} {...register("message")} />
       </div>
 
-      <Button type="submit" variant="secondary">
+      <Button type="submit" variant="default" className="w-full">
         Foglalás
       </Button>
     </form>

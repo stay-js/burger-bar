@@ -11,14 +11,15 @@ export default async function saveTableReservation(formData: FormSchema) {
 
   const toInsert = {
     ...result.data,
-    date: new Date(`${result.data.date} ${result.data.time}`),
+    date: new Date(`${result.data.date.toDateString()} ${result.data.time}`),
     people: Number(result.data.people),
   };
 
   try {
     await db.insert(tableReservations).values(toInsert).execute();
     return { success: true };
-  } catch {
+  } catch (error) {
+    console.error(error);
     return { success: false };
   }
 }

@@ -14,7 +14,7 @@ const RootLayout: React.FC<{ readonly children: React.ReactNode }> = ({
   children,
 }) => (
   <html lang="hu" className={`${GeistSans.variable}`}>
-    <body className="grid min-h-screen grid-cols-1 grid-rows-[1fr_auto] overflow-x-hidden bg-neutral-800 text-white">
+    <body className="dark grid min-h-screen grid-cols-1 grid-rows-[1fr_auto] overflow-x-hidden bg-neutral-800 text-white">
       <div>
         <Navigation />
 
@@ -23,7 +23,7 @@ const RootLayout: React.FC<{ readonly children: React.ReactNode }> = ({
 
       <Footer />
 
-      <Toaster theme="dark" className="text-white" />
+      <Toaster />
     </body>
   </html>
 );

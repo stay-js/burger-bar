@@ -8,7 +8,7 @@ export const BurgerCard: React.FC<{
     image: string;
   };
 }> = ({ burger }) => (
-  <div className="group overflow-hidden rounded-lg bg-background shadow-sm transition-all hover:shadow-md">
+  <div className="group overflow-hidden rounded-lg bg-background bg-white shadow-sm transition-all hover:shadow-md">
     <div className="relative h-48 w-full overflow-hidden">
       <Image
         src={burger.image}
@@ -27,7 +27,7 @@ export const BurgerCard: React.FC<{
         </span>
       </div>
 
-      <p className="text-sm text-muted-foreground">{burger.description}</p>
+      <p className="text-sm text-neutral-600">{burger.description}</p>
     </div>
   </div>
 );
