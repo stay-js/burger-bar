@@ -18,37 +18,41 @@ const Page: NextPage = async () => {
 
   return (
     <>
-      <header className="flex min-h-[70vh] flex-col items-center justify-center gap-4 bg-[url('/images/burger-bg.jpg')] bg-cover bg-center px-4 text-center text-white">
-        <h1
-          className="text-4xl font-bold tracking-tight sm:text-5xl md:text-7xl"
-          style={{ textShadow: "0 0 4px rgba(0, 0, 0, 0.75)" }}
-        >
-          Burger Bár
-        </h1>
+      <header className="relative grid min-h-[70vh] place-items-center bg-[url('/images/header-bg.webp')] bg-cover bg-center">
+        <div className="absolute inset-0 bg-black/50 backdrop-blur-md" />
 
-        <p
-          className="max-w-md text-lg font-semibold sm:text-xl"
-          style={{ textShadow: "0 0 4px rgba(0, 0, 0, 0.75)" }}
-        >
-          Ahol az autentikus magyar ízek találkoznak a gourmet burgerekkel.
-        </p>
+        <div className="z-10 flex flex-col items-center gap-4 px-4 text-center">
+          <h1
+            className="text-4xl font-bold tracking-tight sm:text-5xl md:text-7xl"
+            style={{ textShadow: "0 0 4px rgba(0, 0, 0, 0.75)" }}
+          >
+            Burger Bár
+          </h1>
 
-        <div className="flex flex-col gap-4 sm:flex-row">
-          <Link href="/menu">
-            <Button
-              size="lg"
-              className="bg-orange-400 text-neutral-900 hover:bg-orange-500"
-            >
-              Menü megtekintése
-              <FaArrowRightLong />
-            </Button>
-          </Link>
+          <p
+            className="max-w-md text-lg font-semibold sm:text-xl"
+            style={{ textShadow: "0 0 4px rgba(0, 0, 0, 0.75)" }}
+          >
+            Ahol az autentikus magyar ízek találkoznak a gourmet burgerekkel.
+          </p>
 
-          <Link href="/asztalfoglalas">
-            <Button size="lg" variant="outline" className="text-black">
-              Asztalfoglalás
-            </Button>
-          </Link>
+          <div className="flex flex-col gap-4 sm:flex-row">
+            <Link href="/menu">
+              <Button
+                size="lg"
+                className="bg-orange-400 text-neutral-900 hover:bg-orange-500"
+              >
+                Menü megtekintése
+                <FaArrowRightLong />
+              </Button>
+            </Link>
+
+            <Link href="/asztalfoglalas">
+              <Button size="lg" variant="outline" className="text-black">
+                Asztalfoglalás
+              </Button>
+            </Link>
+          </div>
         </div>
       </header>
 
@@ -72,7 +76,7 @@ const Page: NextPage = async () => {
             </p>
           </div>
 
-          <div className="h-full w-full bg-[url('/images/gourmet-burger.webp')] bg-cover bg-center" />
+          <div className="h-full w-full bg-[url('/images/history-bg.webp')] bg-cover bg-center" />
         </section>
 
         <section className="bg-neutral-100 py-16 text-black">

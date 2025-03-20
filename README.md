@@ -52,6 +52,11 @@ npm run build
 npm run start
 ```
 
+### Felhasznált képek:
+
+- [Header Background](https://www.goodfon.com/food/wallpaper-gamburger-burger-mcdonald-s-perets.html)
+- [History Background](https://stockcake.com/i/juicy-gourmet-burger_70090_3048)
+
 ## Asztali alkalmazás
 
 ### Előkészületek
