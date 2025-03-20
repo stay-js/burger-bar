@@ -13,11 +13,13 @@ const Column: React.FC<{ children: React.ReactNode; title: string }> = ({
   children,
   title,
 }) => (
-  <div>
-    <h2 className="relative mb-8 text-xl text-white after:absolute after:bottom-[-10px] after:block after:h-[2px] after:w-[50px] after:bg-orange-400">
-      {title}
-    </h2>
-    <ul className="flex flex-col gap-1">{children}</ul>
+  <div className="flex xl:justify-end">
+    <div>
+      <h2 className="relative mb-8 text-xl text-white after:absolute after:bottom-[-10px] after:block after:h-[2px] after:w-[50px] after:bg-orange-400">
+        {title}
+      </h2>
+      <ul className="flex flex-col gap-1">{children}</ul>
+    </div>
   </div>
 );
 
