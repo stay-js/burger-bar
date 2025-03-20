@@ -11,7 +11,7 @@ export default async function saveTableReservation(formData: FormSchema) {
 
   const toInsert = {
     ...result.data,
-    date: new Date(result.data.date),
+    date: new Date(`${result.data.date} ${result.data.time}`),
     people: Number(result.data.people),
   };
 

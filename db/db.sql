@@ -11,8 +11,7 @@ CREATE TABLE `table-reservation` (
   `name` varchar(256) NOT NULL,
   `email` varchar(256) NOT NULL,
   `phone` varchar(256) NOT NULL,
-  `date` date NOT NULL,
-  `time` char(5) NOT NULL,
+  `date` datetime NOT NULL,
   `people` int NOT NULL,
   `message` varchar(512),
   CONSTRAINT `table-reservation_id` PRIMARY KEY(`id`)
