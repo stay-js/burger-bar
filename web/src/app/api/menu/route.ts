@@ -1,8 +1,9 @@
 import { type NextRequest } from "next/server";
-import { menu } from "~/server/db/schema";
-import { getAllFromTable } from "~/app/api/get-all-from-table";
-import { createNew } from "~/app/api/create-new";
 import { z } from "zod";
+import { menu } from "~/server/db/schema";
+import { getAllFromTable } from "../get-all-from-table";
+import { createNew } from "../create-new";
+import { updatePartial } from "../updatePartial";
 
 const menuSchema = z.object({
   name: z.string(),
@@ -15,6 +16,10 @@ export async function GET() {
   return getAllFromTable(menu);
 }
 
-export async function PUT(request: NextRequest) {
+export async function POST(request: NextRequest) {
   return createNew(request, menu, menuSchema);
+}
+
+export async function PATCH(request: NextRequest) {
+  return updatePartial(request, menu, menuSchema.extend({ id: z.number() }));
 }
