@@ -61,7 +61,8 @@ npm run start
 
 ### Előkészületek
 
-- `.env-example` fájlban találhatóak az adatbázishoz szükséges adatok. Ezt a fájlt át kell nevezni `.env`-re.
+- `.env-example` fájlban találhatóak az API eléréséhez szükséges adatok. Ezt a fájlt át kell nevezni `.env`-re.
+- Webalkalamzás futtatása.
 
 ### Futtatás
 
