@@ -98,7 +98,7 @@ namespace Desktop
                 await LoadMenu();
             }
         }
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        private async void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             if (Menu.SelectedItems.Count == 0) return;
 
@@ -107,11 +107,16 @@ namespace Desktop
 
             var ids = Menu.SelectedItems.Cast<Desktop_Lib.MenuItem>().Select(x => x.ID);
 
-            _mainWindow
-                .DBClient
-                .ExecuteQuery($"DELETE FROM `menu` WHERE id IN({string.Join(", ", ids)})");
+            try
+            {
+                await _mainWindow.ApiClient.DeleteAsync("/api/menu", ids);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
 
-            _ = LoadMenu();
+            await LoadMenu();
         }
     }
 }

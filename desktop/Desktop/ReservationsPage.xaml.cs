@@ -70,7 +70,7 @@ namespace Desktop
             }
         }
 
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        private async void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             if (Reservations.SelectedItems.Count == 0) return;
 
@@ -79,11 +79,16 @@ namespace Desktop
 
             var ids = Reservations.SelectedItems.Cast<ReservationItem>().Select(x => x.ID);
 
-            _mainWindow
-                .DBClient
-                .ExecuteQuery($"DELETE FROM `table-reservation` WHERE id IN({string.Join(", ", ids)})");
+            try
+            {
+                await _mainWindow.ApiClient.DeleteAsync("/api/reservations", ids);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
 
-            _ = LoadReservations();
+            await LoadReservations();
         }
     }
 }

@@ -5,17 +5,11 @@ namespace Desktop
 {
     public partial class MainWindow : Window
     {
-        public readonly DBClient DBClient;
-
         public readonly ApiClient ApiClient = new();
 
         public MainWindow()
         {
             DotEnv.Load("../../../../.env");
-            DBClient = new(Environment.GetEnvironmentVariable("MYSQL_URL") ?? "",
-                    Environment.GetEnvironmentVariable("MYSQL_DATABASE") ?? "",
-                    Environment.GetEnvironmentVariable("MYSQL_USER") ?? "",
-                    Environment.GetEnvironmentVariable("MYSQL_PASSWORD") ?? "");
 
             InitializeComponent();
             MainContent.Content = new MainMenu(this);
