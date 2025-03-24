@@ -8,4 +8,6 @@
         int People,
         string Message)
     { }
+
+    public record ModifyReservationItem(int ID, string Date, int People) { }
 }

@@ -1,5 +1,6 @@
 ﻿using Desktop_Lib;
 using System.Data;
+using System.Net.Http;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -35,7 +36,7 @@ namespace Desktop
             }
         }
 
-        private void ModifyButton_Click(object sender, RoutedEventArgs e)
+        private async void ModifyButton_Click(object sender, RoutedEventArgs e)
         {
             if (Reservations.SelectedItems.Count == 0) return;
             if (Reservations.SelectedItems.Count > 1)
@@ -44,20 +45,28 @@ namespace Desktop
                 return;
             }
 
-            var item = (Reservations.SelectedItem as ReservationItem)!;
+            var selectedItem = (Reservations.SelectedItem as ReservationItem)!;
 
-            var modifyDialog = new ModifyReservationDialog(item);
+            var modifyDialog = new ModifyReservationDialog(selectedItem);
 
             if (modifyDialog.ShowDialog() == true)
             {
-                _mainWindow
-                    .DBClient
-                    .ExecuteQuery($"UPDATE `table-reservation` SET " +
-                    $"date = '{modifyDialog.Date.SelectedDate:yyyy.MM.dd} {modifyDialog.Time.Text}', " +
-                    $"people = {modifyDialog.People.Text} " +
-                    $"WHERE id = {item.ID}");
+                var item = new ModifyReservationItem(selectedItem.ID,
+                    $"{modifyDialog.Date.SelectedDate:yyyy.MM.dd} {modifyDialog.Time.Text}",
+                    int.Parse(modifyDialog.People.Text));
 
-                _ = LoadReservations();
+                try
+                {
+                    await _mainWindow
+                        .ApiClient
+                        .PostPutOrPatchAsync("/api/reservations", HttpMethod.Patch, item);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex.Message}");
+                }
+
+                await LoadReservations();
             }
         }
 
