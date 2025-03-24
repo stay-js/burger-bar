@@ -1,7 +1,7 @@
 ﻿using System.Data;
+using System.Net.Http;
 using System.Windows;
 using System.Windows.Controls;
-
 
 namespace Desktop
 {
@@ -35,23 +35,33 @@ namespace Desktop
             }
         }
 
-        private void CreateButton_Click(object sender, RoutedEventArgs e)
+        private async void CreateButton_Click(object sender, RoutedEventArgs e)
         {
             var createDialog = new ModifyMenuItemDialog(null);
 
             if (createDialog.ShowDialog() == true)
             {
-                _mainWindow
-                    .DBClient
-                    .ExecuteQuery($"INSERT INTO `menu` (name, price, description, image) " +
-                    $"VALUES ('{createDialog.ItemName.Text}', {createDialog.Price.Text}, " +
-                    $"'{createDialog.Description.Text}', '{createDialog.Image.Text}')");
+                var item = new Desktop_Lib.CreateMenuItem(createDialog.ItemName.Text,
+                    int.Parse(createDialog.Price.Text),
+                    createDialog.Description.Text,
+                    createDialog.Image.Text);
 
-                _ = LoadMenu();
+                try
+                {
+                    await _mainWindow
+                        .ApiClient
+                        .PostPutOrPatchAsync("/api/menu", HttpMethod.Post, item);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex.Message}");
+                }
+
+                await LoadMenu();
             }
         }
 
-        private void ModifyButton_Click(object sender, RoutedEventArgs e)
+        private async void ModifyButton_Click(object sender, RoutedEventArgs e)
         {
             if (Menu.SelectedItems.Count == 0) return;
             if (Menu.SelectedItems.Count > 1)
@@ -60,22 +70,32 @@ namespace Desktop
                 return;
             }
 
-            var item = (Menu.SelectedItem as Desktop_Lib.MenuItem)!;
+            var selectedItem = (Menu.SelectedItem as Desktop_Lib.MenuItem)!;
 
-            var modifyDialog = new ModifyMenuItemDialog(item);
+            var modifyDialog = new ModifyMenuItemDialog(selectedItem);
 
             if (modifyDialog.ShowDialog() == true)
             {
-                _mainWindow
-                    .DBClient
-                    .ExecuteQuery($"UPDATE `menu` " +
-                    $"SET name = '{modifyDialog.ItemName.Text}', " +
-                    $"price = {modifyDialog.Price.Text}, " +
-                    $"description = '{modifyDialog.Description.Text}', " +
-                    $"image = '{modifyDialog.Image.Text}' " +
-                    $"WHERE id = {item.ID}");
 
-                _ = LoadMenu();
+                var item = new Desktop_Lib.MenuItem(
+                   selectedItem.ID,
+                   modifyDialog.ItemName.Text,
+                   int.Parse(modifyDialog.Price.Text),
+                   modifyDialog.Description.Text,
+                   modifyDialog.Image.Text);
+
+                try
+                {
+                    await _mainWindow
+                        .ApiClient
+                        .PostPutOrPatchAsync("/api/menu", HttpMethod.Patch, item);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex.Message}");
+                }
+
+                await LoadMenu();
             }
         }
         private void DeleteButton_Click(object sender, RoutedEventArgs e)

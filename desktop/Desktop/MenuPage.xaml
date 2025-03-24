@@ -37,7 +37,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <ListView Name="Menu">
+            <ListView Name="Menu" ItemsSource="{Binding Items}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}"/>

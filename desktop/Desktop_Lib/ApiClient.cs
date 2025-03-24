@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Text;
+using System.Text.Json;
 
 namespace Desktop_Lib
 {
@@ -28,6 +29,20 @@ namespace Desktop_Lib
 
             string jsonResponse = await response.Content.ReadAsStringAsync();
             return JsonSerializer.Deserialize<T>(jsonResponse, _JsonOptions)!;
+        }
+
+        public async Task PostPutOrPatchAsync(string endpoint, HttpMethod method, object payload)
+        {
+            using var request = new HttpRequestMessage(method, API_URL + endpoint);
+
+            request.Headers.Add("x-api-key", API_KEY);
+
+            string json = JsonSerializer.Serialize(payload, _JsonOptions);
+            request.Content = new StringContent(json, Encoding.UTF8, "application/json");
+
+
+            var response = await HttpClient.SendAsync(request);
+            response.EnsureSuccessStatusCode();
         }
     }
 }
