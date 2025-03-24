@@ -1,6 +1,7 @@
 import { type NextRequest } from "next/server";
 import { z } from "zod";
 import { tableReservations } from "~/server/db/schema";
+import { deleteFromTable } from "../delete-from-table";
 import { getAllFromTable } from "../get-all-from-table";
 import { updatePartial } from "../updatePartial";
 
@@ -29,4 +30,8 @@ export async function GET() {
 
 export async function PATCH(request: NextRequest) {
   return updatePartial(request, tableReservations, reservationSchema);
+}
+
+export async function DELETE(request: NextRequest) {
+  return deleteFromTable(request, tableReservations);
 }

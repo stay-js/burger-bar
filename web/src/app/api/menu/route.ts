@@ -1,8 +1,9 @@
 import { type NextRequest } from "next/server";
 import { z } from "zod";
 import { menu } from "~/server/db/schema";
-import { getAllFromTable } from "../get-all-from-table";
 import { createNew } from "../create-new";
+import { deleteFromTable } from "../delete-from-table";
+import { getAllFromTable } from "../get-all-from-table";
 import { updatePartial } from "../updatePartial";
 
 const menuSchema = z.object({
@@ -22,4 +23,8 @@ export async function POST(request: NextRequest) {
 
 export async function PATCH(request: NextRequest) {
   return updatePartial(request, menu, menuSchema.extend({ id: z.number() }));
+}
+
+export async function DELETE(request: NextRequest) {
+  return deleteFromTable(request, menu);
 }
