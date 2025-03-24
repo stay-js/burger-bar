@@ -5,7 +5,7 @@ import {
   type Column,
   type ColumnBaseConfig,
   type ColumnDataType,
-  eq,
+  inArray,
 } from "drizzle-orm";
 import { z } from "zod";
 
@@ -15,7 +15,7 @@ export async function deleteFromTable<
   },
 >(request: NextRequest, table: T) {
   const json = (await request.json()) as unknown;
-  const result = z.object({ id: z.number() }).safeParse(json);
+  const result = z.object({ ids: z.array(z.number()) }).safeParse(json);
 
   if (!result.success) {
     return new NextResponse(JSON.stringify({ error: "Invalid request body" }), {
@@ -24,7 +24,7 @@ export async function deleteFromTable<
   }
 
   try {
-    await db.delete(table).where(eq(table.id, result.data.id)).execute();
+    await db.delete(table).where(inArray(table.id, result.data.ids)).execute();
     return new NextResponse(JSON.stringify({ message: "Deleted" }), {
       status: 200,
     });
