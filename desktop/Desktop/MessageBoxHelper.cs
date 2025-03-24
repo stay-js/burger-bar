@@ -50,5 +50,13 @@ namespace Desktop
                 MessageBoxButton.OK,
                 MessageBoxImage.Warning);
         }
+
+        public static void Error(string message)
+        {
+            MessageBox.Show(message,
+                "Hiba",
+                MessageBoxButton.OK,
+                MessageBoxImage.Error);
+        }
     }
 }

@@ -9,6 +9,8 @@ namespace Desktop
     {
         private readonly MainWindow _mainWindow;
 
+        private readonly string API_ENDPOINT = "/api/menu";
+
         public MenuPage(MainWindow mainWindow)
         {
             InitializeComponent();
@@ -25,13 +27,13 @@ namespace Desktop
             {
                 var items = await _mainWindow
                     .ApiClient
-                    .GetAsync<Desktop_Lib.MenuItem[]>("/api/menu");
+                    .GetAsync<Desktop_Lib.MenuItem[]>(API_ENDPOINT);
 
                 Menu.ItemsSource = items;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}");
+                MessageBoxHelper.Error(ex.Message);
             }
         }
 
@@ -50,11 +52,11 @@ namespace Desktop
                 {
                     await _mainWindow
                         .ApiClient
-                        .PostPutOrPatchAsync("/api/menu", HttpMethod.Post, item);
+                        .PostPutOrPatchAsync(API_ENDPOINT, HttpMethod.Post, item);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error: {ex.Message}");
+                    MessageBoxHelper.Error(ex.Message);
                 }
 
                 await LoadMenu();
@@ -88,11 +90,11 @@ namespace Desktop
                 {
                     await _mainWindow
                         .ApiClient
-                        .PostPutOrPatchAsync("/api/menu", HttpMethod.Patch, item);
+                        .PostPutOrPatchAsync(API_ENDPOINT, HttpMethod.Patch, item);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error: {ex.Message}");
+                    MessageBoxHelper.Error(ex.Message);
                 }
 
                 await LoadMenu();
@@ -109,11 +111,11 @@ namespace Desktop
 
             try
             {
-                await _mainWindow.ApiClient.DeleteAsync("/api/menu", ids);
+                await _mainWindow.ApiClient.DeleteAsync(API_ENDPOINT, ids);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}");
+                MessageBoxHelper.Error(ex.Message);
             }
 
             await LoadMenu();

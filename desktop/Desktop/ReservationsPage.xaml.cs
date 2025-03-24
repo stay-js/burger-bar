@@ -10,6 +10,8 @@ namespace Desktop
     {
         private readonly MainWindow _mainWindow;
 
+        private readonly string API_ENDPOINT = "/api/reservations";
+
         public ReservationsPage(MainWindow mainWindow)
         {
             InitializeComponent();
@@ -26,13 +28,13 @@ namespace Desktop
             {
                 var items = await _mainWindow
                     .ApiClient
-                    .GetAsync<ReservationItem[]>("/api/reservations");
+                    .GetAsync<ReservationItem[]>(API_ENDPOINT);
 
                 Reservations.ItemsSource = items;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}");
+                MessageBoxHelper.Error(ex.Message);
             }
         }
 
@@ -59,11 +61,11 @@ namespace Desktop
                 {
                     await _mainWindow
                         .ApiClient
-                        .PostPutOrPatchAsync("/api/reservations", HttpMethod.Patch, item);
+                        .PostPutOrPatchAsync(API_ENDPOINT, HttpMethod.Patch, item);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error: {ex.Message}");
+                    MessageBoxHelper.Error(ex.Message);
                 }
 
                 await LoadReservations();
@@ -81,11 +83,11 @@ namespace Desktop
 
             try
             {
-                await _mainWindow.ApiClient.DeleteAsync("/api/reservations", ids);
+                await _mainWindow.ApiClient.DeleteAsync(API_ENDPOINT, ids);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}");
+                MessageBoxHelper.Error(ex.Message);
             }
 
             await LoadReservations();
