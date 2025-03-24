@@ -6,7 +6,20 @@ import { updatePartial } from "../updatePartial";
 
 const reservationSchema = z.object({
   id: z.number(),
-  date: z.date(),
+  date: z.coerce
+    .date()
+    .transform(
+      (date) =>
+        new Date(
+          Date.UTC(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            date.getHours(),
+            date.getMinutes(),
+          ),
+        ),
+    ),
   people: z.number(),
 });
 
