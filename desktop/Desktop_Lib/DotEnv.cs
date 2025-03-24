@@ -12,7 +12,9 @@
 
                 if (parts.Length != 2) continue;
 
-                Environment.SetEnvironmentVariable(parts[0], parts[1]);
+                string value = parts[1].Replace("'", "").Replace("\"", "");
+
+                Environment.SetEnvironmentVariable(parts[0], value);
             }
         }
     }

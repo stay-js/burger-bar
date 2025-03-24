@@ -13,32 +13,26 @@ namespace Desktop
         {
             InitializeComponent();
             _mainWindow = mainWindow;
-            LoadReservations();
+            _ = LoadReservations();
         }
 
         private void BackToMainMenu_Click(object sender, RoutedEventArgs e) =>
             _mainWindow.GoBackToMainMenu();
 
-        private void LoadReservations()
+        private async Task LoadReservations()
         {
-            var data = _mainWindow.DBClient.ExecuteQuery("SELECT * FROM `table-reservation`");
-            if (data is null) return;
-
-            var reservations = new List<ReservationItem>();
-
-            foreach (DataRow row in data.Rows)
+            try
             {
-                reservations.Add(new(
-                    Convert.ToInt32(row["id"]),
-                    row["name"].ToString() ?? "",
-                    row["email"].ToString() ?? "",
-                    row["phone"].ToString() ?? "",
-                    Convert.ToDateTime(row["date"]),
-                    Convert.ToInt32(row["people"]),
-                    row["message"].ToString() ?? ""));
-            }
+                var items = await _mainWindow
+                    .ApiClient
+                    .GetAsync<ReservationItem[]>("/api/reservations");
 
-            Reservations.ItemsSource = reservations;
+                Reservations.ItemsSource = items;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
         }
 
         private void ModifyButton_Click(object sender, RoutedEventArgs e)
@@ -63,7 +57,7 @@ namespace Desktop
                     $"people = {modifyDialog.People.Text} " +
                     $"WHERE id = {item.ID}");
 
-                LoadReservations();
+                _ = LoadReservations();
             }
         }
 
@@ -80,7 +74,7 @@ namespace Desktop
                 .DBClient
                 .ExecuteQuery($"DELETE FROM `table-reservation` WHERE id IN({string.Join(", ", ids)})");
 
-            LoadReservations();
+            _ = LoadReservations();
         }
     }
 }

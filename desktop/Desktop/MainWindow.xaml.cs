@@ -7,6 +7,8 @@ namespace Desktop
     {
         public readonly DBClient DBClient;
 
+        public readonly ApiClient ApiClient = new();
+
         public MainWindow()
         {
             DotEnv.Load("../../../../.env");

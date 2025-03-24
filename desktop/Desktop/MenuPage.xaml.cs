@@ -13,30 +13,26 @@ namespace Desktop
         {
             InitializeComponent();
             _mainWindow = mainWindow;
-            LoadMenu();
+            _ = LoadMenu();
         }
 
         private void BackToMainMenu_Click(object sender, RoutedEventArgs e) =>
             _mainWindow.GoBackToMainMenu();
 
-
-        private void LoadMenu()
+        private async Task LoadMenu()
         {
-            var data = _mainWindow.DBClient.ExecuteQuery("SELECT * FROM `menu`");
-            if (data is null) return;
-
-            var menuItems = new List<Desktop_Lib.MenuItem>();
-
-            foreach (DataRow row in data.Rows)
+            try
             {
-                menuItems.Add(new(Convert.ToInt32(row["id"]),
-                    row["name"].ToString() ?? "",
-                    Convert.ToInt32(row["price"]),
-                    row["description"].ToString() ?? "",
-                    row["image"].ToString() ?? ""));
-            }
+                var items = await _mainWindow
+                    .ApiClient
+                    .GetAsync<Desktop_Lib.MenuItem[]>("/api/menu");
 
-            Menu.ItemsSource = menuItems;
+                Menu.ItemsSource = items;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
         }
 
         private void CreateButton_Click(object sender, RoutedEventArgs e)
@@ -51,7 +47,7 @@ namespace Desktop
                     $"VALUES ('{createDialog.ItemName.Text}', {createDialog.Price.Text}, " +
                     $"'{createDialog.Description.Text}', '{createDialog.Image.Text}')");
 
-                LoadMenu();
+                _ = LoadMenu();
             }
         }
 
@@ -79,7 +75,7 @@ namespace Desktop
                     $"image = '{modifyDialog.Image.Text}' " +
                     $"WHERE id = {item.ID}");
 
-                LoadMenu();
+                _ = LoadMenu();
             }
         }
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
@@ -95,7 +91,7 @@ namespace Desktop
                 .DBClient
                 .ExecuteQuery($"DELETE FROM `menu` WHERE id IN({string.Join(", ", ids)})");
 
-            LoadMenu();
+            _ = LoadMenu();
         }
     }
 }
