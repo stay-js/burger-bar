@@ -1,4 +1,5 @@
 import { type NextRequest } from "next/server";
+import { revalidateTag } from "next/cache";
 import { z } from "zod";
 import { menu } from "~/server/db/schema";
 import { createNew } from "../create-new";
@@ -18,13 +19,23 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
-  return createNew(request, menu, menuSchema);
+  const response = createNew(request, menu, menuSchema);
+  revalidateTag("menu");
+  return response;
 }
 
 export async function PATCH(request: NextRequest) {
-  return updatePartial(request, menu, menuSchema.extend({ id: z.number() }));
+  const response = updatePartial(
+    request,
+    menu,
+    menuSchema.extend({ id: z.number() }),
+  );
+  revalidateTag("menu");
+  return response;
 }
 
 export async function DELETE(request: NextRequest) {
-  return deleteFromTable(request, menu);
+  const response = deleteFromTable(request, menu);
+  revalidateTag("menu");
+  return response;
 }
