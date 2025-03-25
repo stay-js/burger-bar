@@ -25,9 +25,9 @@ COLLATE utf8_hungarian_ci;
 ```bash
 cd web
 # projekt futtatásához szükséges előészületek után:
-pnpm run db:migrate
+pnpm run db:push
 # amennyiben nincs pnpm telepítve
-# npm run db:migrate
+# npm run db:push
 ```
 
 - Menu tábla feltöltése a `menu.sql` fájlban található adatokkal.
