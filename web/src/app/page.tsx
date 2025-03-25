@@ -18,7 +18,7 @@ const Page: NextPage = async () => {
 
   return (
     <>
-      <header className="relative grid min-h-[70vh] place-items-center bg-[url('/images/header-bg.webp')] bg-cover bg-center">
+      <header className="relative isolate grid min-h-[70vh] place-items-center bg-[url('/images/header-bg.webp')] bg-cover bg-center">
         <div className="absolute inset-0 bg-black/50 backdrop-blur-md" />
 
         <div className="z-10 flex flex-col items-center gap-4 px-4 text-center">
