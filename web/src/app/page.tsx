@@ -4,8 +4,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { Button } from "~/components/ui/button";
 import { BurgerCard } from "~/components/burger-card";
 import { createMetadata } from "~/lib/create-metadata";
-import { db } from "~/server/db";
-import { menu } from "~/server/db/schema";
+import { getCachedMenu } from "~/lib/get-cached-menu";
 
 export const metadata = createMetadata({
   path: "",
@@ -14,7 +13,7 @@ export const metadata = createMetadata({
 });
 
 const Page: NextPage = async () => {
-  const data = await db.select().from(menu).execute();
+  const data = await getCachedMenu();
 
   return (
     <>
