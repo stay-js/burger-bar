@@ -18,5 +18,8 @@ namespace Desktop
 
         private void Reservations_Click(object sender, RoutedEventArgs e) =>
             _mainWindow.GotToReservationsPage();
+
+        private void Order_Click(object sender, RoutedEventArgs e) =>
+            _mainWindow.GotToOrderPage();
     }
 }

@@ -5,7 +5,12 @@
         int Price,
         string Description,
         string Image)
-    { }
+    {
+        public override string ToString()
+        {
+            return $"{Name} ({Price} Ft)";
+        }
+    }
 
     public record CreateMenuItem(string Name,
     int Price,

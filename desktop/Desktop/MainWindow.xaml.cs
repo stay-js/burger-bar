@@ -18,5 +18,6 @@ namespace Desktop
         public void GoBackToMainMenu() => MainContent.Content = new MainMenu(this);
         public void GoToMenuPage() => MainContent.Content = new MenuPage(this);
         public void GotToReservationsPage() => MainContent.Content = new ReservationsPage(this);
+        public void GotToOrderPage() => MainContent.Content = new OrderPage(this);
     }
 }

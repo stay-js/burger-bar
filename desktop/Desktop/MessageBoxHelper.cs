@@ -51,6 +51,14 @@ namespace Desktop
                 MessageBoxImage.Warning);
         }
 
+        public static void InvalidAmountWarning()
+        {
+            MessageBox.Show("Az mennyiség csak egész szám lehet!",
+                "Figyelmezetés",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
+
         public static void Error(string message)
         {
             MessageBox.Show(message,
