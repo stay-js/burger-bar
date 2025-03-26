@@ -79,10 +79,10 @@ namespace Desktop
 
             foreach (var item in _orders)
             {
-                sb.AppendLine($"{item.Amount} db {item.Item} - Fizetendő {item.Total} Ft");
+                sb.AppendLine($"{item.Amount} db {item.Item} - Fizetendő: {item.Total:C0}");
             }
 
-            sb.AppendLine($"\nÖsszesen: {_orders.Sum(x => x.Total)} Ft");
+            sb.AppendLine($"\nÖsszesen: {_orders.Sum(x => x.Total):C0}");
 
             MessageBox.Show(sb.ToString(), "Számla");
         }
