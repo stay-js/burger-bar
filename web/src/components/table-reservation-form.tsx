@@ -60,7 +60,7 @@ export const TableReservationForm: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex w-full max-w-lg flex-col gap-4 rounded-3xl bg-neutral-900 px-12 pb-12 pt-8"
+      className="flex w-full max-w-lg flex-col gap-4 rounded-3xl bg-neutral-900 p-6 md:p-12"
     >
       <div>
         <Label htmlFor="name">
