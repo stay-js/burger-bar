@@ -13,7 +13,7 @@ export const metadata = createMetadata({
 });
 
 const Page: NextPage = async () => {
-  const data = await getCachedMenu();
+  const menu = await getCachedMenu();
 
   return (
     <>
@@ -85,7 +85,7 @@ const Page: NextPage = async () => {
             </h2>
 
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {data.slice(0, 6).map((burger) => (
+              {menu.slice(0, 6).map((burger) => (
                 <BurgerCard key={burger.id} burger={burger} />
               ))}
             </div>
