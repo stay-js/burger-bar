@@ -24,6 +24,9 @@ namespace Desktop
 
         private async Task LoadReservations()
         {
+            Reservations.Visibility = Visibility.Collapsed;
+            Loading.Visibility = Visibility.Visible;
+
             try
             {
                 var items = await _mainWindow
@@ -36,6 +39,9 @@ namespace Desktop
             {
                 MessageBoxHelper.Error(ex.Message);
             }
+
+            Reservations.Visibility = Visibility.Visible;
+            Loading.Visibility = Visibility.Collapsed;
         }
 
         private async void ModifyButton_Click(object sender, RoutedEventArgs e)

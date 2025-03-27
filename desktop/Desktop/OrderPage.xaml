@@ -55,7 +55,7 @@
                 </ListView.View>
             </ListView>
 
-            <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Margin="5,0" VerticalAlignment="Center">
+            <StackPanel Name="AddItem" Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Margin="5,0" VerticalAlignment="Center">
                 <ComboBox
                     Name="Item"
                     Width="250"
@@ -72,6 +72,16 @@
                 
                 <Label Content="darab" Padding="0" VerticalAlignment="Center"/>
             </StackPanel>
+
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="0" 
+                Name="Loading"
+                Margin="5,0"
+                Padding="10,5"
+                Text="Menü lekérése folyamatban..."
+                Visibility="Collapsed"
+                VerticalAlignment="Center"/>
 
             <Button
                 Grid.Row="1"

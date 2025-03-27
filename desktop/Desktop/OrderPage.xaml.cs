@@ -26,6 +26,9 @@ namespace Desktop
 
         private async Task LoadMenu()
         {
+            AddItem.Visibility = Visibility.Collapsed;
+            Loading.Visibility = Visibility.Visible;
+
             try
             {
                 var items = await _mainWindow
@@ -39,6 +42,9 @@ namespace Desktop
             {
                 MessageBoxHelper.Error(ex.Message);
             }
+
+            AddItem.Visibility = Visibility.Visible;
+            Loading.Visibility = Visibility.Collapsed;
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
