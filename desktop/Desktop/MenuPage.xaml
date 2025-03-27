@@ -29,6 +29,15 @@
                 HorizontalAlignment="Center"
                 FontSize="24"
                 Text="Burger Bár Admin - Menü"/>
+
+            <Button
+                Grid.Column="2"
+                HorizontalAlignment="Right"
+                Margin="10"
+                Padding="10"
+                Width="100"
+                Content="Frissítés"
+                Click="RefreshButton_Click"/>
         </Grid>
 
         <Grid Background="White">

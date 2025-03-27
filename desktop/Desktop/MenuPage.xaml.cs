@@ -120,5 +120,8 @@ namespace Desktop
 
             await LoadMenu();
         }
+
+        private async void RefreshButton_Click(object sender, RoutedEventArgs e) =>
+            await LoadMenu();
     }
 }

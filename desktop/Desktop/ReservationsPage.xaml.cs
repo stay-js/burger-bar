@@ -92,5 +92,8 @@ namespace Desktop
 
             await LoadReservations();
         }
+
+        private async void RefreshButton_Click(object sender, RoutedEventArgs e) =>
+            await LoadReservations();
     }
 }
