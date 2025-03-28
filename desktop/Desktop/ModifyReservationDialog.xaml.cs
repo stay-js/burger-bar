@@ -5,20 +5,33 @@ namespace Desktop
 {
     public partial class ModifyReservationDialog : Window
     {
-        public ModifyReservationDialog(ReservationItem item)
+        public ModifyReservationDialog(ReservationItem? item)
         {
             InitializeComponent();
 
+            if (item is null)
+            {
+                Title = "Foglalás létrehozása";
+                return;
+            }
+
+            Name.Text = item.Name;
+            Email.Text = item.Email;
+            PhoneNumber.Text = item.Phone;
             Date.SelectedDate = item.Date;
             Time.Text = item.Date.ToShortTimeString();
             People.Text = item.People.ToString();
+            Title = "Foglalás módosítása";
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            if (Date.SelectedDate is null
+            if (string.IsNullOrWhiteSpace(Name.Text)
+                || string.IsNullOrWhiteSpace(Email.Text)
+                || string.IsNullOrWhiteSpace(PhoneNumber.Text)
                 || string.IsNullOrWhiteSpace(Time.Text)
-                || string.IsNullOrWhiteSpace(People.Text))
+                || string.IsNullOrWhiteSpace(People.Text)
+                || Date.SelectedDate is null)
             {
                 MessageBoxHelper.EmptyFieldsWarning();
                 return;

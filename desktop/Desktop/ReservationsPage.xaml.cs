@@ -44,6 +44,33 @@ namespace Desktop
             Loading.Visibility = Visibility.Collapsed;
         }
 
+        private async void CreateButton_Click(object sender, RoutedEventArgs e)
+        {
+            var createDialog = new ModifyReservationDialog(null);
+
+            if (createDialog.ShowDialog() == true)
+            {
+                var item = new CreateReservationItem(createDialog.Name.Text,
+                    createDialog.Email.Text,
+                    createDialog.PhoneNumber.Text,
+                    $"{createDialog.Date.SelectedDate:yyyy.MM.dd} {createDialog.Time.Text}",
+                    int.Parse(createDialog.People.Text));
+
+                try
+                {
+                    await _mainWindow
+                        .ApiClient
+                        .PostPutOrPatchAsync(API_ENDPOINT, HttpMethod.Post, item);
+                }
+                catch (Exception ex)
+                {
+                    MessageBoxHelper.Error(ex.Message);
+                }
+
+                await LoadReservations();
+            }
+        }
+
         private async void ModifyButton_Click(object sender, RoutedEventArgs e)
         {
             if (Reservations.SelectedItems.Count == 0) return;
@@ -60,6 +87,9 @@ namespace Desktop
             if (modifyDialog.ShowDialog() == true)
             {
                 var item = new ModifyReservationItem(selectedItem.ID,
+                    modifyDialog.Name.Text,
+                    modifyDialog.Email.Text,
+                    modifyDialog.PhoneNumber.Text,
                     $"{modifyDialog.Date.SelectedDate:yyyy.MM.dd} {modifyDialog.Time.Text}",
                     int.Parse(modifyDialog.People.Text));
 

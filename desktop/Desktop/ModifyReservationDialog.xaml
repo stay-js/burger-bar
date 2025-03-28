@@ -5,10 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Desktop"
         mc:Ignorable="d"
-        Title="Foglalás módosítása" SizeToContent="WidthAndHeight"
+        SizeToContent="WidthAndHeight"
         WindowStartupLocation="CenterScreen">
     <Grid Margin="20">
         <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
@@ -24,45 +27,87 @@
             Grid.Column="0"
             Padding="0"
             Margin="10"
+            Content="Név:"/>
+
+        <TextBox
+            Grid.Row="0"
+            Grid.Column="1"
+            Width="300"
+            Margin="10"
+            Name="Name"/>
+
+        <Label
+            Grid.Row="1"
+            Grid.Column="0"
+            Padding="0"
+            Margin="10"
+            Content="E-mail:"/>
+
+        <TextBox
+            Grid.Row="1"
+            Grid.Column="1"
+            Width="300"
+            Margin="10"
+            Name="Email"/>
+
+        <Label
+            Grid.Row="2"
+            Grid.Column="0"
+            Padding="0"
+            Margin="10"
+            Content="Telefonszám:"/>
+
+        <TextBox
+            Grid.Row="2"
+            Grid.Column="1"
+            Width="300"
+            Margin="10"
+            Name="PhoneNumber"/>
+
+        <Label
+            Grid.Row="3"
+            Grid.Column="0"
+            Padding="0"
+            Margin="10"
             Content="Dátum:"/>
 
         <DatePicker
-            Grid.Row="0"
+            Grid.Row="3"
             Grid.Column="1"
             Width="300"
             Margin="10"
             Name="Date"/>
 
         <Label
-            Grid.Row="1"
+            Grid.Row="4"
             Grid.Column="0"
             Padding="0"
             Margin="10"
             Content="Időpont:"/>
 
         <TextBox
-            Grid.Row="1"
+            Grid.Row="4"
             Grid.Column="1"
             Width="300"
             Margin="10"
             Name="Time"/>
 
         <Label
-            Grid.Row="2"
+            Grid.Row="5"
             Grid.Column="0"
             Padding="0"
             Margin="10"
             Content="Hány főre?"/>
 
         <TextBox
-            Grid.Row="2"
+            Grid.Row="5"
             Grid.Column="1"
             Width="300"
             Margin="10"
             Name="People"/>
 
         <Button
-            Grid.Row="3"
+            Grid.Row="6"
             Grid.Column="0"
             Grid.ColumnSpan="2"
             Margin="10"

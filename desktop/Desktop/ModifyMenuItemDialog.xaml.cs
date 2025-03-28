@@ -9,12 +9,17 @@ namespace Desktop
         {
             InitializeComponent();
 
-            if (item is null) return;
+            if (item is null)
+            {
+                Title = "Elem létrehozása";
+                return;
+            }
 
             ItemName.Text = item.Name;
             Price.Text = item.Price.ToString();
             Description.Text = item.Description;
             Image.Text = item.Image;
+            Title = "Elem módosítása";
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)

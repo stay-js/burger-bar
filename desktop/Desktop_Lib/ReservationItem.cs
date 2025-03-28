@@ -9,5 +9,18 @@
         string Message)
     { }
 
-    public record ModifyReservationItem(int ID, string Date, int People) { }
+    public record CreateReservationItem(string Name,
+        string Email,
+        string Phone,
+        string Date,
+        int People)
+    { }
+
+    public record ModifyReservationItem(int ID,
+        string Name,
+        string Email,
+        string Phone,
+        string Date,
+        int People)
+    { }
 }
