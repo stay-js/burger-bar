@@ -37,6 +37,18 @@ namespace Desktop
                 return;
             }
 
+            if (!Validator.ValidateEmail(Email.Text))
+            {
+                MessageBoxHelper.InvalidEmailWarning();
+                return;
+            }
+
+            if (!Validator.ValidatePhoneNumber(PhoneNumber.Text))
+            {
+                MessageBoxHelper.InvalidPhoneNumberWarning();
+                return;
+            }
+
             if (!Validator.ValidateTime(Time.Text))
             {
                 MessageBoxHelper.InvalidTimeWarning();

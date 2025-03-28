@@ -59,6 +59,22 @@ namespace Desktop
                 MessageBoxImage.Warning);
         }
 
+        public static void InvalidEmailWarning()
+        {
+            MessageBox.Show("Hibás e-mail cím!",
+                "Figyelmezetés",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
+
+        public static void InvalidPhoneNumberWarning()
+        {
+            MessageBox.Show("Hibás telefonszám!",
+                "Figyelmezetés",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
+
         public static void Error(string message)
         {
             MessageBox.Show(message,

@@ -1,4 +1,6 @@
-﻿namespace Desktop_Lib
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Desktop_Lib
 {
     public static class Validator
     {
@@ -15,5 +17,11 @@
         }
 
         public static bool ValidateInt(string input) => int.TryParse(input, out _);
+
+        public static bool ValidateEmail(string input) =>
+            new EmailAddressAttribute().IsValid(input);
+
+        public static bool ValidatePhoneNumber(string input) =>
+            new PhoneAttribute().IsValid(input);
     }
 }
