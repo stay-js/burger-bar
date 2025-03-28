@@ -9,14 +9,18 @@ export default async function saveTableReservation(formData: FormSchema) {
 
   if (!result.success) return { success: false };
 
-  const year = result.data.date.getFullYear();
-  const month = result.data.date.getMonth();
-  const day = result.data.date.getDate();
+  const localDate = new Date(result.data.date);
   const [hours, minutes] = result.data.time.split(":").map(Number);
+
+  localDate.setHours(hours!, minutes);
+
+  const utcDate = new Date(
+    localDate.getTime() - localDate.getTimezoneOffset() * 60000,
+  );
 
   const toInsert = {
     ...result.data,
-    date: new Date(Date.UTC(year, month, day, hours, minutes)),
+    date: utcDate,
     people: Number(result.data.people),
   };
 
