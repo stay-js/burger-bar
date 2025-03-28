@@ -7,7 +7,6 @@ import { updatePartial } from "../updatePartial";
 import { createNew } from "../create-new";
 
 const reservationSchema = z.object({
-  id: z.number(),
   name: z.string(),
   email: z.string().email(),
   phone: z
