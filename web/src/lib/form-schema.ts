@@ -9,10 +9,16 @@ export const formSchema = z.object({
     .regex(/^[+]?[\s./0-9]*[(]?[0-9]{1,4}[)]?[-\s./0-9]{8,14}$/g, {
       message: "Hibás telefonszám!",
     }),
-  date: z.date().refine((date) => date > new Date(), {
-    message:
-      "A dátum nem lehet múltbeli! (Ha a mai napra szeretne asztalt foglalni, kérjük telefonon vegye fel velünk a kapcsolatot.)",
-  }),
+  date: z
+    .date()
+    .refine((date) => date > new Date(), {
+      message:
+        "A dátum nem lehet múltbeli! (Ha a mai napra szeretne asztalt foglalni, kérjük telefonon vegye fel velünk a kapcsolatot.)",
+    })
+    .transform(
+      (date) =>
+        new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())),
+    ),
   time: z
     .string()
     .min(1, { message: "Válasszon időpontot!" })

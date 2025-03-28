@@ -14,9 +14,7 @@ export default async function saveTableReservation(formData: FormSchema) {
 
   localDate.setHours(hours!, minutes);
 
-  const utcDate = new Date(
-    localDate.getTime() - localDate.getTimezoneOffset() * 60000,
-  );
+  const utcDate = new Date(localDate.toISOString());
 
   const toInsert = {
     ...result.data,
