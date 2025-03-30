@@ -81,11 +81,11 @@ namespace Desktop
 
             var sb = new StringBuilder();
 
-            sb.AppendLine($"Termékek: {_orders.Count}\n");
+            sb.AppendLine($"Termékek: {_orders.Count} db\n");
 
             foreach (var item in _orders)
             {
-                sb.AppendLine($"{item.Amount} db {item.Item} - Fizetendő: {item.Total:C0}");
+                sb.AppendLine($"{item.Amount} db {item.Item} - {item.Total:C0}");
             }
 
             sb.AppendLine($"\nÖsszesen: {_orders.Sum(x => x.Total):C0}");
