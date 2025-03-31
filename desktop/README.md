@@ -42,23 +42,23 @@ A fő adatmodellek a következők:
 **Menü elem**:
 
 ```csharp
-// MenuItem osztály
+// MenuItem rekord
 public record MenuItem(int ID, string Name, int Price, string Description, string Image);
 
-// CreateMenuItem osztály új elem létrehozásához
+// CreateMenuItem rekord új elem létrehozásához
 public record CreateMenuItem(string Name, int Price, string Description, string Image);
 ```
 
 **Foglalás**:
 
 ```csharp
-// ReservationItem osztály
+// ReservationItem rekord
 public record ReservationItem(int ID, string Name, string Email, string Phone, DateTime Date, int People, string? Message);
 
-// CreateReservationItem osztály új foglalás létrehozásához
+// CreateReservationItem rekord új foglalás létrehozásához
 public record CreateReservationItem(string Name, string Email, string Phone, string Date, int People);
 
-// ModifyReservationItem osztály foglalás módosításához
+// ModifyReservationItem rekord foglalás módosításához
 public record ModifyReservationItem(int ID, string Name, string Email, string Phone, string Date, int People);
 ```
 
@@ -116,3 +116,112 @@ Az alkalmazás a `.env` fájlból olvassa be a környezeti változókat a `DotEn
 - Új adatmodell létrehozása a `Desktop_Lib` projektben
 - `ApiClient` osztály kiegészítése a kommunikáció megvalósításával, vagy meglévő metódusok használata
 - Megfelelő hibakezelés implementálása
+
+## 2. Felhasználói Dokumentáció
+
+### 2.1. A Burger Bár Admin alkalmazás bemutatása
+
+A Burger Bár Admin alkalmazás egy étterem adminisztrációs rendszere, amely lehetővé teszi a menü, a foglalások és a rendelések kezelését. Az alkalmazás egyszerű és intuitív felülettel rendelkezik, amely megkönnyíti a napi adminisztrációs feladatok elvégzését.
+
+### 2.2. Rendszerkövetelmények
+
+- **Windows 10** vagy újabb operációs rendszer
+- **.NET 8.0** vagy újabb verzió
+- **Internetkapcsolat** az API eléréshez
+
+### 2.3. Első indítás
+
+Megfeleő környezeti változók beállítása lásd: **1.7. Környezeti változók**
+
+### 2.4. Főmenü használata
+
+Az alkalmazás indítása után a főmenü jelenik meg, amely a következő opciókat kínálja:
+
+- **Menü**: Az étterem étlapjának kezelése
+- **Foglalások**: A vendégek által leadott foglalások kezelése
+- **Rendelés**: Új rendelés összeállítása és számla nyomtatása
+
+### 2.5. Menü kezelése
+
+A menü kezelése opcióra kattintva megjelennek az étterem étlapján szereplő ételek és italok. Ezen a felületen a következő műveletek végezhetők el:
+
+#### 2.5.1. Menüelem létrehozása
+
+- Kattintson a "Létrehozás" gombra
+- Töltse ki a megjelenő űrlapot a következő adatokkal:
+  - Név: Az étel vagy ital neve
+  - Ár: Az étel vagy ital ára (csak egész szám)
+  - Leírás: Az étel vagy ital részletes leírása
+  - Kép: Az étel vagy ital képének elérési útja
+- Kattintson a "Mentés" gombra
+
+#### 2.5.2. Menüelem módosítása
+
+- Válassza ki a módosítani kívánt elemet a listából
+- Kattintson a "Módosítás" gombra
+- Módosítsa a kívánt adatokat
+- Kattintson a "Mentés" gombra
+
+#### 2.5.3. Menüelem törlése
+
+- Válassza ki a törölni kívánt elem(ek)et a listából
+- Kattintson a "Törlés" gombra
+- A megerősítő kérdésre válaszoljon "Igen"-nel
+
+#### 2.5.4. Lista frissítése
+
+- A lista manuális frissítéséhez kattintson a "Frissítés" gombra.
+
+### 2.6. Foglalások kezelése
+
+A foglalások kezelése opcióra kattintva megjelennek a vendégek által leadott foglalások. Ezen a felületen a következő műveletek végezhetők el:
+
+#### 2.6.1. Foglalás létrehozása
+
+- Kattintson a "Létrehozás" gombra
+- Töltse ki a megjelenő űrlapot a következő adatokkal:
+  - Név: A foglaló neve
+  - E-mail: A foglaló e-mail címe
+  - Telefonszám: A foglaló telefonszáma
+  - Dátum: A foglalás dátuma
+  - Időpont: A foglalás időpontja (HH:MM formátumban)
+  - Hány főre?: A vendégek száma
+- Kattintson a "Mentés" gombra
+
+#### 2.6.2. Foglalás módosítása
+
+- Válassza ki a módosítani kívánt foglalást a listából
+- Kattintson a "Módosítás" gombra
+- Módosítsa a kívánt adatokat
+- Kattintson a "Mentés" gombra
+
+#### 2.6.3. Foglalás törlése
+
+- Válassza ki a törölni kívánt foglalás(oka)t a listából
+- Kattintson a "Törlés" gombra
+- A megerősítő kérdésre válaszoljon "Igen"-nel
+
+#### 2.6.4. Lista frissítése
+
+- A lista manuális frissítéséhez kattintson a "Frissítés" gombra.
+
+### 2.7. Rendelés kezelése
+
+A rendelés opcióra kattintva lehetőség nyílik új rendelés összeállítására és számla nyomtatására. Ezen a felületen a következő műveletek végezhetők el:
+
+#### 2.7.1. Étel vagy ital hozzáadása a rendeléshez
+
+- Válassza ki a kívánt ételt vagy italt a legördülő menüből
+- Adja meg a darabszámot (egész szám, alapértelmezetten 1)
+- Kattintson a "Hozzáadás" gombra
+
+#### 2.7.2. Tétel törlése a rendelésből
+
+- Válassza ki a törölni kívánt tétel(eke)t a listából
+- Kattintson a "Törlés" gombra
+
+#### 2.7.3. Számla nyomtatása
+
+- Állítsa össze a rendelést a fentiek szerint
+- Kattintson a "Számla nyomtatása" gombra
+- A megjelenő ablakban ellenőrizze a számla tartalmát
