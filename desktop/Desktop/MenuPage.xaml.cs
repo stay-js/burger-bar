@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using Desktop_Lib;
+using System.Data;
 using System.Net.Http;
 using System.Windows;
 using System.Windows.Controls;
@@ -58,7 +59,7 @@ namespace Desktop
                 {
                     await _mainWindow
                         .ApiClient
-                        .PostPutOrPatchAsync(API_ENDPOINT, HttpMethod.Post, item);
+                        .PostPutPatchOrDeleteAsync(API_ENDPOINT, HttpMethod.Post, item);
                 }
                 catch (Exception ex)
                 {
@@ -96,7 +97,7 @@ namespace Desktop
                 {
                     await _mainWindow
                         .ApiClient
-                        .PostPutOrPatchAsync(API_ENDPOINT, HttpMethod.Patch, item);
+                        .PostPutPatchOrDeleteAsync(API_ENDPOINT, HttpMethod.Patch, item);
                 }
                 catch (Exception ex)
                 {
@@ -117,7 +118,9 @@ namespace Desktop
 
             try
             {
-                await _mainWindow.ApiClient.DeleteAsync(API_ENDPOINT, ids);
+                await _mainWindow
+                    .ApiClient
+                    .PostPutPatchOrDeleteAsync(API_ENDPOINT, HttpMethod.Delete, new IdsToDelete(ids));
             }
             catch (Exception ex)
             {

@@ -31,27 +31,13 @@ namespace Desktop_Lib
             return JsonSerializer.Deserialize<T>(jsonResponse, _JsonOptions)!;
         }
 
-        public async Task PostPutOrPatchAsync(string endpoint, HttpMethod method, object payload)
+        public async Task PostPutPatchOrDeleteAsync(string endpoint, HttpMethod method, object payload)
         {
             using var request = new HttpRequestMessage(method, API_URL + endpoint);
 
             request.Headers.Add("x-api-key", API_KEY);
 
             string json = JsonSerializer.Serialize(payload, _JsonOptions);
-            request.Content = new StringContent(json, Encoding.UTF8, "application/json");
-
-
-            var response = await HttpClient.SendAsync(request);
-            response.EnsureSuccessStatusCode();
-        }
-
-        public async Task DeleteAsync(string endpoint, IEnumerable<int> ids)
-        {
-            using var request = new HttpRequestMessage(HttpMethod.Delete, API_URL + endpoint);
-
-            request.Headers.Add("x-api-key", API_KEY);
-
-            string json = JsonSerializer.Serialize(new IdsToDelete(ids), _JsonOptions);
             request.Content = new StringContent(json, Encoding.UTF8, "application/json");
 
             var response = await HttpClient.SendAsync(request);
