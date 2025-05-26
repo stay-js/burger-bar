@@ -4,6 +4,15 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "~/lib/utils";
+import { Button } from "~/components/ui/button";
+
+import {
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@clerk/nextjs";
 
 const items = [
   {
@@ -97,6 +106,27 @@ export const Navigation: React.FC = () => {
               </Link>
             </li>
           ))}
+
+          <SignedOut>
+            <li className="flex items-center px-1">
+              <SignInButton>
+                <Button className="bg-orange-400">Bejelentkezés</Button>
+              </SignInButton>
+            </li>
+            <li className="flex items-center px-1">
+              <Button asChild>
+                <SignUpButton>
+                  <Button>Regisztráció</Button>
+                </SignUpButton>
+              </Button>
+            </li>
+          </SignedOut>
+
+          <SignedIn>
+            <li className="flex items-center px-1">
+              <UserButton />
+            </li>
+          </SignedIn>
         </ul>
       </div>
     </nav>
