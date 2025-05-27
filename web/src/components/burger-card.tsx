@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Button } from "./ui/button";
 
 export const BurgerCard: React.FC<{
   burger: {
@@ -28,6 +29,8 @@ export const BurgerCard: React.FC<{
       </div>
 
       <p className="text-sm text-neutral-600">{burger.description}</p>
+
+      <Button className="bg-orange-400">Rendelés</Button>
     </div>
   </div>
 );
