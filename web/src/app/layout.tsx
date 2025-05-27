@@ -14,8 +14,8 @@ export const viewport: Viewport = {
 const RootLayout: React.FC<{ readonly children: React.ReactNode }> = ({
   children,
 }) => (
-  <html lang="hu" className={`${GeistSans.variable}`}>
-    <ClerkProvider>
+  <ClerkProvider>
+    <html lang="hu" className={`${GeistSans.variable}`}>
       <body className="dark overflow-x-hidden bg-neutral-800 text-white">
         <div>
           <Navigation />
@@ -27,8 +27,8 @@ const RootLayout: React.FC<{ readonly children: React.ReactNode }> = ({
 
         <Toaster />
       </body>
-    </ClerkProvider>
-  </html>
+    </html>
+  </ClerkProvider>
 );
 
 export default RootLayout;
