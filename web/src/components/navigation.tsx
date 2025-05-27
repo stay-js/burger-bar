@@ -108,7 +108,7 @@ export const Navigation: React.FC = () => {
           ))}
         </ul>
 
-        <div className="flex w-fit flex-col gap-2 max-lg:pt-10 lg:flex-row lg:items-center">
+        <div className="flex w-fit flex-col gap-2 max-lg:pt-10 lg:px-1 lg:flex-row lg:items-center">
           <SignedOut>
             <SignInButton>
               <Button className="bg-orange-400">Bejelentkezés</Button>
