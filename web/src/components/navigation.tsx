@@ -87,7 +87,7 @@ export const Navigation: React.FC = () => {
 
       <div
         className={cn(
-          "fixed left-0 top-16 h-[calc(100vh-4rem)] w-full overflow-y-auto bg-neutral-900 px-6 pb-20 pt-4 lg:static lg:flex lg:h-fit lg:w-fit lg:p-0",
+          "fixed left-0 top-16 h-[calc(100vh-4rem)] w-full overflow-y-auto bg-neutral-900 px-6 pb-20 pt-4 lg:static lg:flex lg:h-fit lg:w-fit lg:gap-1 lg:p-0",
           !isToggled && "hidden",
         )}
       >
@@ -96,7 +96,7 @@ export const Navigation: React.FC = () => {
             <li key={`nav-${path}`}>
               <Link
                 className={cn(
-                  "relative flex font-bold text-white transition-colors after:absolute after:-bottom-4 after:h-px after:w-full after:bg-neutral-600 lg:static lg:block lg:rounded-md lg:px-3 lg:py-2 lg:font-medium lg:after:hidden lg:hover:bg-neutral-800",
+                  "relative flex font-bold text-white transition-colors after:absolute after:-bottom-4 after:h-px after:w-full after:bg-neutral-600 lg:static lg:h-9 lg:items-center lg:rounded-md lg:px-3 lg:font-medium lg:after:hidden lg:hover:bg-neutral-800",
                   path !== pathname && "lg:text-neutral-400",
                 )}
                 onClick={handleClose}
@@ -106,28 +106,23 @@ export const Navigation: React.FC = () => {
               </Link>
             </li>
           ))}
+        </ul>
 
+        <div className="flex w-fit flex-col gap-2 max-lg:pt-10 lg:flex-row lg:items-center">
           <SignedOut>
-            <li className="flex items-center px-1">
-              <SignInButton>
-                <Button className="bg-orange-400">Bejelentkezés</Button>
-              </SignInButton>
-            </li>
-            <li className="flex items-center px-1">
-              <Button asChild>
-                <SignUpButton>
-                  <Button>Regisztráció</Button>
-                </SignUpButton>
-              </Button>
-            </li>
+            <SignInButton>
+              <Button className="bg-orange-400">Bejelentkezés</Button>
+            </SignInButton>
+
+            <SignUpButton>
+              <Button>Regisztráció</Button>
+            </SignUpButton>
           </SignedOut>
 
           <SignedIn>
-            <li className="flex items-center px-1">
-              <UserButton />
-            </li>
+            <UserButton />
           </SignedIn>
-        </ul>
+        </div>
       </div>
     </nav>
   );
