@@ -120,11 +120,13 @@ export const Navigation: React.FC = () => {
               </li>
             ))}
 
-            <SignInButton mode="modal">
-              <li className="relative flex font-bold text-white transition-colors after:absolute after:-bottom-4 after:h-px after:w-full after:bg-neutral-600 lg:static lg:hidden lg:h-9 lg:items-center lg:rounded-md lg:px-3 lg:font-medium lg:after:hidden lg:hover:bg-neutral-800">
-                Bejelentkezés
-              </li>
-            </SignInButton>
+            <SignedOut>
+              <SignInButton mode="modal">
+                <li className="relative flex font-bold text-white transition-colors after:absolute after:-bottom-4 after:h-px after:w-full after:bg-neutral-600 lg:static lg:hidden lg:h-9 lg:items-center lg:rounded-md lg:px-3 lg:font-medium lg:after:hidden lg:hover:bg-neutral-800">
+                  Bejelentkezés
+                </li>
+              </SignInButton>
+            </SignedOut>
           </ul>
         </div>
       </div>
