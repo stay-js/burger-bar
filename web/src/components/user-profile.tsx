@@ -8,7 +8,7 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { Button } from "~/components/ui/button";
 import { CalendarIcon, SettingsIcon, LogOutIcon } from "lucide-react";
 
-export const UserButton = () => {
+export const UserProfile = () => {
   const { isLoaded, user } = useUser();
   const { signOut, openUserProfile } = useClerk();
 
