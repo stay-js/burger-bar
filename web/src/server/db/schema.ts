@@ -7,11 +7,9 @@ import {
 
 export const createTable = mysqlTableCreator((name) => name);
 
-export const tableReservations = createTable("table-reservation", {
+export const reservations = createTable("reservations", {
   id: int("id").primaryKey().autoincrement(),
-  name: varchar("name", { length: 256 }).notNull(),
-  email: varchar("email", { length: 256 }).notNull(),
-  phone: varchar("phone", { length: 256 }).notNull(),
+  userId: varchar("user_id", { length: 256 }).notNull(),
   date: datetime("date").notNull(),
   people: int("people").notNull(),
   message: varchar("message", { length: 512 }),

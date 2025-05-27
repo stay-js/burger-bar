@@ -1,10 +1,14 @@
 "use server";
 
+import { auth } from "@clerk/nextjs/server";
 import { formSchema, type FormSchema } from "~/lib/form-schema";
 import { db } from "~/server/db";
-import { tableReservations } from "~/server/db/schema";
+import { reservations } from "~/server/db/schema";
 
-export default async function saveTableReservation(formData: FormSchema) {
+export default async function saveReservation(formData: FormSchema) {
+  const authObject = await auth();
+  if (!authObject.userId) return { success: false };
+
   const result = formSchema.safeParse(formData);
 
   if (!result.success) return { success: false };
@@ -20,10 +24,11 @@ export default async function saveTableReservation(formData: FormSchema) {
     ...result.data,
     date: utcDate,
     people: Number(result.data.people),
+    userId: authObject.userId,
   };
 
   try {
-    await db.insert(tableReservations).values(toInsert).execute();
+    await db.insert(reservations).values(toInsert).execute();
     return { success: true };
   } catch (error) {
     console.error(error);
