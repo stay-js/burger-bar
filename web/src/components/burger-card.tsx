@@ -19,6 +19,7 @@ export const BurgerCard: React.FC<{
       />
     </div>
 
+    {/* TODO: */}
     <div className="flex flex-col gap-2 p-4">
       <div className="flex items-start justify-between gap-4">
         <h3 className="font-bold">{burger.name}</h3>
@@ -30,7 +31,7 @@ export const BurgerCard: React.FC<{
 
       <p className="text-sm text-neutral-600">{burger.description}</p>
 
-      <Button className="bg-orange-400">Rendelés</Button>
+      <Button className="bg-orange-400 hover:bg-orange-500 mt-auto">Kosárba</Button>
+      </div>
     </div>
-  </div>
 );
