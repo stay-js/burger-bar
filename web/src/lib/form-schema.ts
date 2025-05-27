@@ -1,14 +1,6 @@
 import { z } from "zod";
 
 export const formSchema = z.object({
-  name: z.string().min(1, { message: "Adja meg a nevét!" }),
-  email: z.string().email({ message: "Hibás e-mail cím!" }),
-  phone: z
-    .string()
-    .min(1, { message: "Adja meg a telefonszámát!" })
-    .regex(/^[+]?[\s./0-9]*[(]?[0-9]{1,4}[)]?[-\s./0-9]{8,14}$/g, {
-      message: "Hibás telefonszám!",
-    }),
   date: z
     .date()
     .refine((date) => date > new Date(), {

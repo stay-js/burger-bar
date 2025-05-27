@@ -18,7 +18,7 @@ import {
 } from "./ui/select";
 import { formSchema, type FormSchema } from "~/lib/form-schema";
 import { openingHours } from "~/lib/opening-hours";
-import saveTableReservation from "~/app/asztalfoglalas/actions";
+import saveReservation from "~/app/asztalfoglalas/actions";
 
 export const TableReservationForm: React.FC = () => {
   const [date, setDate] = useState<Date | undefined>(new Date());
@@ -42,7 +42,7 @@ export const TableReservationForm: React.FC = () => {
   const onSubmit: SubmitHandler<FormSchema> = async (data) => {
     reset();
 
-    const { success } = await saveTableReservation(data);
+    const { success } = await saveReservation(data);
 
     if (success) {
       toast("Sikeres foglalás!", {
@@ -62,54 +62,6 @@ export const TableReservationForm: React.FC = () => {
       onSubmit={handleSubmit(onSubmit)}
       className="flex w-full max-w-lg flex-col gap-4 rounded-3xl bg-neutral-900 p-6 md:p-12"
     >
-      <div>
-        <Label htmlFor="name">
-          Név: <span className="text-red-500">*</span>
-        </Label>
-        <Input
-          id="name"
-          type="text"
-          placeholder="Minta János"
-          {...register("name")}
-        />
-
-        {errors.name && (
-          <span className="text-xs text-red-500">{errors.name.message}</span>
-        )}
-      </div>
-
-      <div>
-        <Label htmlFor="email">
-          E-mail: <span className="text-red-500">*</span>
-        </Label>
-        <Input
-          id="email"
-          type="text"
-          placeholder="example@example.hu"
-          {...register("email")}
-        />
-
-        {errors.email && (
-          <span className="text-xs text-red-500">{errors.email.message}</span>
-        )}
-      </div>
-
-      <div>
-        <Label htmlFor="phone">
-          Telefonszám: <span className="text-red-500">*</span>
-        </Label>
-        <Input
-          id="phone"
-          type="text"
-          placeholder="+36 30 111 1111"
-          {...register("phone")}
-        />
-
-        {errors.phone && (
-          <span className="text-xs text-red-500">{errors.phone.message}</span>
-        )}
-      </div>
-
       <div>
         <Label htmlFor="date">
           Dátum: <span className="text-red-500">*</span>

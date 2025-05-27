@@ -110,11 +110,11 @@ export const Navigation: React.FC = () => {
 
         <div className="flex w-fit flex-col gap-2 max-lg:pt-10 lg:flex-row lg:items-center">
           <SignedOut>
-            <SignInButton>
+            <SignInButton mode="modal">
               <Button className="bg-orange-400">Bejelentkezés</Button>
             </SignInButton>
 
-            <SignUpButton>
+            <SignUpButton mode="modal">
               <Button>Regisztráció</Button>
             </SignUpButton>
           </SignedOut>
